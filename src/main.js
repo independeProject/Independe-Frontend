@@ -12,7 +12,9 @@ const app = createApp(App)
 app.use(router)
 app.use(store)
 app.use(vuetify)
+app.use(axios)
 
+app.config.globalProperties.$axios = axios;
 app.config.globalProperties.$filter = {
     formatYear(value) {
         var date = new Date(value);
@@ -48,5 +50,4 @@ app.config.globalProperties.$filter = {
     }
 }
 
-app.config.globalProperties.$axios = axios;
 app.mount('#app')
