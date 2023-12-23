@@ -220,13 +220,13 @@
             <ul>
               <li v-for="chat in chatHistory" :key="chat.message">
                 <div class = my-wrapper>
-                <div :class="{'my-message': chat.senderNickname === myNickname, 'your-message': chat.senderNickname !== myNickname}">
-                  <ul v-if="chat.senderNickname !== myNickname">
+                <div :class="{'my-message': chat.senderNickname === userNickName, 'your-message': chat.senderNickname !== userNickName}">
+                  <ul v-if="chat.senderNickname !== userNickName">
                     <li v-for="room in chatRooms" :key="room.chatRoomId">
                         <span v-if="room.receiverId == memberId" class="receiver-nickname">{{ room.receiverNickname }}</span>
                     </li>
                  </ul>
-                  <div v-if="chat.senderNickname !== myNickname" class = "msg-your">
+                  <div v-if="chat.senderNickname !== userNickName" class = "msg-your">
                     <span class="msg2">{{ chat.message }}</span>
                     <span class="message-createdDate">{{ chat.createdDate }}</span>
                   </div>
@@ -241,8 +241,8 @@
             <ul>
               <li v-for="message in messages" :key="message.id">
                 <div class = my-wrapper>
-                <div :class="{'my-message': message.senderNickname === myNickname, 'your-message': message.senderNickname !== myNickname}">
-                  <ul v-if="message.senderNickname !== myNickname">
+                <div :class="{'my-message': message.senderNickname === userNickName, 'your-message': message.senderNickname !== userNickName}">
+                  <ul v-if="message.senderNickname !== userNickName">
                     <li v-for="room in chatRooms" :key="room.chatRoomId">
                         <span v-if="room.receiverId == memberId" class="receiver-nickname">{{ room.receiverNickname }}</span>
                     </li>
@@ -388,7 +388,6 @@
     import Stomp from 'webstomp-client'
     import SockJS from 'sockjs-client'
     import { mapGetters } from 'vuex';
-    import axios from 'axios';
     
     export default {
       data() {
@@ -403,7 +402,6 @@
           newMessage: '',
           stompClient: null,
           chatRoomId: null,
-          myNickname: null,
           chatHistory: [],
           chatRooms: [],
           
@@ -423,7 +421,6 @@
       mounted() {
           this.memberId = this.$route.params.memberId;
           this.findChatRoomId();
-          this.loadChatHistory();
           this.selectMember();
           this.fetchChatRooms();
   
@@ -443,10 +440,7 @@
           this.$router.push('/chat/' + receiverId);        
         },
         fetchChatRooms() {
-    
-  
-          axios.get('/api/chat/rooms', {
-  
+          this.$axios.get('/api/chat/rooms', {
             headers: {
               Authorization: this.getToken,
             },
@@ -459,29 +453,25 @@
             });
         },
         findChatRoomId() {
-  
-          axios.get('/api/chat/room', {
-  
-            params: {
-              receiverId: this.memberId,
-            },
+          this.$axios.post('/api/chat/room', {
+            receiverId: this.memberId,
+          }, {
             headers: {
               Authorization: this.getToken,
             },
           })
           .then(response => {
-            console.log(response.data);
             this.chatRoomId = response.data.chatRoomId;
-            this.myNickname = response.data.myNickname;
+            this.loadChatHistory();
           })
           .catch(error => {
             console.error(error);
           });
         },
         loadChatHistory() {
-          axios.get('/api/chat/history', {
+          this.$axios.get('/api/chat/history', {
             params: {
-              receiverId: this.memberId,
+              chatRoomId: this.chatRoomId,
             },
             headers: {
               Authorization: this.getToken,
