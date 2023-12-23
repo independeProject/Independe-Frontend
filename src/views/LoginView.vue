@@ -59,12 +59,12 @@
           </v-row>
           <v-row justify="center" class="mb-5">
             <v-col cols="1">
-              <a href="https://www.independe.co.kr/oauth2/authorization/naver?redirect_uri=https://www.independe.co.kr/redirect">
+              <a :href="`${domain}/oauth2/authorization/naver?redirect_uri=${domain}/redirect`">
                 <v-img :height="75" src="../img/naver.png"></v-img>
               </a>
             </v-col>
             <v-col cols="1">
-              <a href="https://www.independe.co.kr/oauth2/authorization/kakao?redirect_uri=https://www.independe.co.kr/redirect">
+              <a :href="`${domain}/oauth2/authorization/kakao?redirect_uri=${domain}/redirect`">
                 <v-img :height="75" src="../img/kakaoTalk.png"></v-img>
               </a>
             </v-col>
@@ -150,7 +150,8 @@ export default {
       active_tab: 0,
       link: ['메인', '게시판', '자취생활'],
       username: '',
-      password: ''
+      password: '',
+      domain: 'http://3.34.134.198:8080'
     };
   },
   computed: {
@@ -165,7 +166,7 @@ export default {
       };
 
       this.$axios
-        .post('/api/login', credentials)
+        .post('/api/member/login', credentials)
         .then((response) => {
           const token = response.headers.authorization;
           this.saveToken(token); // 토큰 값을 Vuex 스토어에 저장
