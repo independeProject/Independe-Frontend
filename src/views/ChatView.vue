@@ -413,6 +413,7 @@
   
         searchText: '', // 검색어를 저장하는 데이터 속성
         error: false, // 로딩 상태를 나타내는 데이터 속성
+        domain: 'http://3.34.134.198:8080'
         };
       },
       computed: {
@@ -492,7 +493,7 @@
           this.initStompClient();
         },
         initStompClient() {
-          const socket = new SockJS('http://localhost:8080/ws')
+          const socket = new SockJS(`${this.domain}/ws`)
   
           this.stompClient = Stomp.over(socket)
           const header = {
