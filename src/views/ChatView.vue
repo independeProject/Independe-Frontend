@@ -446,7 +446,7 @@
             },
           })
             .then(response => {
-              this.chatRooms = response.data;
+              this.chatRooms = response.data.data;
             })
             .catch(error => {
               console.error(error);
@@ -461,7 +461,7 @@
             },
           })
           .then(response => {
-            this.chatRoomId = response.data.chatRoomId;
+            this.chatRoomId = response.data.data.chatRoomId;
             this.loadChatHistory();
           })
           .catch(error => {
@@ -478,7 +478,7 @@
             },
           })
           .then(response => {
-            this.chatHistory = response.data;
+            this.chatHistory = response.data.data;
             
           })
           .catch(error => {
