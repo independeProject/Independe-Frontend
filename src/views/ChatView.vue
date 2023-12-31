@@ -206,7 +206,7 @@
   
     <div class="chat">
         <div class="container-1">
-        <h2>채팅목록</h2>
+        <h2>채팅 목록</h2>
         <ul>
           <li v-for="room in chatRooms" :key="room.chatRoomId">
             <router-link :to="'/chat/' + room.receiverId" class="chat-link">
@@ -216,7 +216,7 @@
         </ul>
         </div>
         <div class="container-2">
-        <div v-if="memberId">
+        <div v-if="memberId" class="chat-input-container">
             <ul>
               <li v-for="chat in chatHistory" :key="chat.message">
                 <div class = my-wrapper>
@@ -269,35 +269,50 @@
   .chat {
     display: flex;
     flex-direction: row;
+    height: 100%;
   }
   
   .container-1 {
     flex: 1; /* 남은 공간을 모두 차지하도록 설정 */
     background-color: #f1f1f1;
+    min-width: 350px;
+    padding: 15px;
   }
   
   .container-2 {
     flex: 4; /* 남은 공간을 모두 차지하도록 설정 */
+    height: 100%;
+  }
+
+  .chat-input-container  {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   
   ul, ol {
     list-style-type: none;
   }
+
+  ul > li {
+    padding: 10px;
+  }
+
   .chat-link {
     display: inline-block;
-    color: rgb(8, 148, 50);
+    color: #4A8522;
     font-weight: bold;
     text-decoration: none;
-    font-size: 30px;
-    padding-bottom: 20px;
+    font-size: 24px;
+    line-height: 20px;
+    padding: 10px;
   }
   .chat-link:hover {
-    width: 340px;
-    height: 50px;
+    width: 100%;
     color: white;
-    border-radius: 15px;
-    background-color: rgb(8, 148, 50);
-    opacity: 0.5;
+    border-radius: 50px;
+    background-color: #4A8522;
   }
   .my-wrapper {
     height: auto;
@@ -326,10 +341,8 @@
   }
   .msg2{
     display: inline-block;
-    border-radius: 15px;
+    border-radius: 5px;
     padding: 7px 15px;
-    margin-bottom: 10px;
-    margin-top: 5px;
   }
   .msg-my{
     text-align: right;
@@ -361,22 +374,20 @@
   }
   
   .input-container {
-    position: sticky;
-    bottom: 0 ;
     display: flex;
     justify-content: space-between;
-    z-index: 1;
   }
   
   .input-field {
     width: 90%;
     box-sizing: border-box;
+    padding: 15px;
   }
   
   .button {
     flex-shrink: 0;
     width: 10%;
-    height: 50px;
+    height: 100%;
     background-color: #4A8522;
     color: white;
   }
