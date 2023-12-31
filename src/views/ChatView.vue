@@ -205,7 +205,7 @@
     </v-app-bar>
   
     <div class="chat">
-        <div class="container-1" v-show="ok">
+        <div class="container-1">
         <h2>채팅목록</h2>
         <ul>
           <li v-for="room in chatRooms" :key="room.chatRoomId">
@@ -413,7 +413,7 @@
   
         searchText: '', // 검색어를 저장하는 데이터 속성
         error: false, // 로딩 상태를 나타내는 데이터 속성
-        domain: 'http://3.34.134.198:8080'
+        domain: 'http://3.34.134.198:8080',
         };
       },
       computed: {
@@ -426,15 +426,15 @@
           this.fetchChatRooms();
   
           if (this.$store.state.locationAuthentication === true)
-      {
-        this.getAddr();
-        this.boolAuthentication = true      
-      }
-      else
-      this.boolAuthentication = false
+          {
+            this.getAddr();
+            this.boolAuthentication = true      
+          }
+          else
+          this.boolAuthentication = false
   
-      if (this.getToken)
-        this.loginToken()  
+          if (this.getToken)
+            this.loginToken()  
       },
       methods: {
         startChat(receiverId) {
@@ -521,6 +521,7 @@
             receiverId: this.memberId,
             chatRoomId: this.chatRoomId,
             senderNickname: null,
+            isReadData: false
           };
           const destination = '/pub/private-message';
           const header = {
