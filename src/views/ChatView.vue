@@ -209,7 +209,7 @@
         <h2>채팅목록</h2>
         <ul>
           <li v-for="room in chatRooms" :key="room.chatRoomId">
-            <router-link :to="'/chat/' + room.receiverId" @click="goForward" class="chat-link">
+            <router-link :to="'/chat/' + room.receiverId" class="chat-link">
               <span>{{ room.receiverNickname }} </span>
             </router-link>
           </li>
@@ -419,7 +419,18 @@
       computed: {
       ...mapGetters(['getToken']),
       },
+      watch: {
+        $route (val) {
+          if (val.params.memberId) {
+            this.init();
+          }
+        }
+      },
       mounted() {
+        this.init();
+      },
+      methods: {
+        init () {
           this.memberId = this.$route.params.memberId;
           this.findChatRoomId();
           this.selectMember();
@@ -434,9 +445,8 @@
           this.boolAuthentication = false
   
           if (this.getToken)
-            this.loginToken()  
-      },
-      methods: {
+            this.loginToken()
+        },
         startChat(receiverId) {
           this.$router.push('/chat/' + receiverId);        
         },
