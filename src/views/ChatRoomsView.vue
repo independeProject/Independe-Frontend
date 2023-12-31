@@ -204,27 +204,61 @@
     </v-container>
   </v-app-bar>
 
-    <div>
-        <h1>Chat Rooms</h1>
+    <div class="chat">
+      <div class="container-1">
+        <h2>채팅 목록</h2>
         <ul>
           <li v-for="room in chatRooms" :key="room.chatRoomId">
-            <router-link :to="'/chat/' + room.receiverId" class = chatrooms-link>{{ room.receiverNickname }} </router-link>
-            <span class="temp-lastmessage"> {{room.lastMessage}} </span>
+            <router-link :to="'/chat/' + room.receiverId" class = chat-link>{{ room.receiverNickname }} </router-link>
+            <!-- <br/><span class="temp-lastmessage"> {{room.lastMessage}} </span> -->
           </li>
         </ul>
+      </div>
+      <div class="container-2">
+      </div>
     </div>
   </template>
   
   <style scoped>
-    .chatrooms-link {
-      display: inline-block;
-      text-decoration: none;
-      font-size: 50px;
-      color: black;
-      padding-bottom: 20px;
+    .chat {
+      display: flex;
+      flex-direction: row;
+      height: 100%;
     }
-    .chatrooms-link:hover {
+    .container-1 {
+      flex: 1; /* 남은 공간을 모두 차지하도록 설정 */
+      background-color: #f1f1f1;
+      min-width: 350px;
+      padding: 15px;
+    }
+  
+    .container-2 {
+      flex: 4; /* 남은 공간을 모두 차지하도록 설정 */
+      height: 100%;
+    }
+
+    ul, ol {
+    list-style-type: none;
+    }
+
+    ul > li {
+      padding: 10px;
+    }
+
+    .chat-link {
+      display: inline-block;
+      color: #4A8522;
       font-weight: bold;
+      text-decoration: none;
+      font-size: 24px;
+      line-height: 20px;
+      padding: 10px;
+    }
+    .chat-link:hover {
+      width: 100%;
+      color: white;
+      border-radius: 50px;
+      background-color: #4A8522;
     }
     .temp-lastmessage {
       padding-right: 2px;
@@ -233,7 +267,6 @@
   </style>
   
   <script>
-  import axios from 'axios';
   import { mapGetters } from 'vuex';
   
   export default {
@@ -272,18 +305,17 @@
     },
     methods: {
       fetchChatRooms() {
-
-        axios.get('/api/chat/rooms', {
-          headers: {
-            Authorization: this.getToken,
-          },
-        })
-          .then(response => {
-            this.chatRooms = response.data;
+        this.$axios.get('/api/chat/rooms', {
+            headers: {
+              Authorization: this.getToken,
+            },
           })
-          .catch(error => {
-            console.error(error);
-          });
+            .then(response => {
+              this.chatRooms = response.data.data;
+            })
+            .catch(error => {
+              console.error(error);
+            });
       },
       toggleLocationAuthentication() {
       this.$store.commit('toggleLocationAuthentication');
