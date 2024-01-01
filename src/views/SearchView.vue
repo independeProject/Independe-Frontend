@@ -937,12 +937,13 @@ export default {
     if (this.$store.state.locationAuthentication === true) {
       this.getAddr();
       this.boolAuthentication = true      
-    }
-    else
+    } else {
       this.boolAuthentication = false
+    }
 
-    if (this.getToken)
+    if (this.getToken) {
       this.loginToken()
+    }
   },
   methods: {
     Board() {
@@ -967,12 +968,13 @@ export default {
           this.count = res.data.count;
 
           // 페이지 처리 코드...
-          if (this.totalPage < 10)
+          if (this.totalPage < 10) {
             this.totalPage = 1
-          else if (this.totalPage % 10 === 0)
+          } else if (this.totalPage % 10 === 0) {
             this.totalPage = parseInt(this.totalPage / 10)
-          else
+          } else {
             this.totalPage = parseInt(this.totalPage / 10) + 1
+          }
 
           console.log(res.data);
         })
@@ -1001,13 +1003,13 @@ export default {
     toggleLocationAuthentication() {
       this.$store.commit('toggleLocationAuthentication');
 
-      if (this.$store.state.locationAuthentication === true)
-
+      if (this.$store.state.locationAuthentication === true) {
         this.$axios.post("/api/members/region", { region: this.$store.state.currentLocation }, {
           headers: {
             Authorization: this.$store.state.token, // 헤더에 토큰 추가
           },
         });
+      }
     },
     totalSearch() {
       if (this.searchText !== '') {

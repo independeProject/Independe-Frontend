@@ -720,7 +720,7 @@
           />
           <v-sheet :width="1150">
             <v-list
-              v-for="Board in Board"
+              v-for="Board in BoardList"
               :key="Board"
               style="overflow:hidden; font-size:14px"
             >
@@ -1141,7 +1141,7 @@
             </v-row>
             <v-row class="px-3">
               <div
-                v-for="video in video"
+                v-for="video in videoList"
                 :key="video"
                 class="mx-1"
               >
@@ -1310,18 +1310,18 @@ export default {
         this.independentCheck = index
         this.$store.state.independentCheck = index
 
-        if (this.$store.state.independentCheck === 0)
+        if (this.$store.state.independentCheck === 0) {
           this.independent_clean()
-        else if (this.$store.state.independentCheck === 1)
+        } else if (this.$store.state.independentCheck === 1) {
           this.independent_wash()
-        else if (this.$store.state.independentCheck === 2)
+        } else if (this.$store.state.independentCheck === 2) {
           this.independent_cook()
-        else if (this.$store.state.independentCheck === 3)
+        } else if (this.$store.state.independentCheck === 3) {
           this.independent_health()
-        else if (this.$store.state.independentCheck === 4)
+        } else if (this.$store.state.independentCheck === 4) {
           this.independent_etc()
-      }
-      else {
+        }
+      } else {
         window.location.href = pathname;
       }
     });
@@ -1329,29 +1329,30 @@ export default {
   mounted() {
     this.$store.state.boardCheck = 5
 
-    if (this.$store.state.independentCheck === 0)
+    if (this.$store.state.independentCheck === 0) {
       this.independent_clean()
-    else if (this.$store.state.independentCheck === 1)
+    } else if (this.$store.state.independentCheck === 1) {
       this.independent_wash()
-    else if (this.$store.state.independentCheck === 2)
+    } else if (this.$store.state.independentCheck === 2) {
       this.independent_cook()
-    else if (this.$store.state.independentCheck === 3)
+    } else if (this.$store.state.independentCheck === 3) {
       this.independent_health()
-    else if (this.$store.state.independentCheck === 4)
+    } else if (this.$store.state.independentCheck === 4) {
       this.independent_etc()
+    }
 
     this.date()
 
-    if (this.$store.state.locationAuthentication === true)
-    {
+    if (this.$store.state.locationAuthentication === true) {
       this.getAddr();
       this.boolAuthentication = true      
-    }
-    else
+    } else {
       this.boolAuthentication = false
+    }
 
-    if (this.getToken)
-      this.loginToken()  
+    if (this.getToken) {
+      this.loginToken()
+    }  
   },
   methods: {
     boardSearch() {
@@ -1376,12 +1377,13 @@ export default {
           this.totalPage = res.data.count;
 
           // 페이지 처리 코드...
-          if (this.totalPage < 10)
+          if (this.totalPage < 10) {
             this.totalPage = 1
-          else if (this.totalPage % 10 === 0)
+          } else if (this.totalPage % 10 === 0) {
             this.totalPage = parseInt(this.totalPage / 10)
-          else
+          } else {
             this.totalPage = parseInt(this.totalPage / 10) + 1
+          }
 
           console.log(res.data);
         })
@@ -1409,12 +1411,13 @@ export default {
           this.totalPage = res.data.count
           this.videoList = res.data.data.independentPostVideoDtos
 
-          if (this.totalPage < 10)
+          if (this.totalPage < 10) {
             this.totalPage = 1
-          else if (this.totalPage % 10 === 0)
+          } else if (this.totalPage % 10 === 0) {
             this.totalPage = parseInt(this.totalPage / 10)
-          else
+          } else {
             this.totalPage = parseInt(this.totalPage / 10) + 1
+          }
 
           console.log(res.data)
         })
@@ -1439,12 +1442,13 @@ export default {
           this.totalPage = res.data.count
           this.videoList = res.data.data.independentPostVideoDtos
 
-          if (this.totalPage < 10)
+          if (this.totalPage < 10) {
             this.totalPage = 1
-          else if (this.totalPage % 10 === 0)
+          } else if (this.totalPage % 10 === 0) {
             this.totalPage = parseInt(this.totalPage / 10)
-          else
+          } else {
             this.totalPage = parseInt(this.totalPage / 10) + 1
+          }
 
           console.log(res.data)
         })
@@ -1469,12 +1473,13 @@ export default {
           this.totalPage = res.data.count
           this.videoList = res.data.data.independentPostVideoDtos
 
-          if (this.totalPage < 10)
+          if (this.totalPage < 10) {
             this.totalPage = 1
-          else if (this.totalPage % 10 === 0)
+          } else if (this.totalPage % 10 === 0) {
             this.totalPage = parseInt(this.totalPage / 10)
-          else
+          } else {
             this.totalPage = parseInt(this.totalPage / 10) + 1
+          }
 
           console.log(res.data)
         })
@@ -1499,12 +1504,13 @@ export default {
           this.totalPage = res.data.count
           this.videoList = res.data.data.independentPostVideoDtos
 
-          if (this.totalPage < 10)
+          if (this.totalPage < 10) {
             this.totalPage = 1
-          else if (this.totalPage % 10 === 0)
+          } else if (this.totalPage % 10 === 0) {
             this.totalPage = parseInt(this.totalPage / 10)
-          else
+          } else {
             this.totalPage = parseInt(this.totalPage / 10) + 1
+          }
 
           console.log(res.data)
         })
@@ -1529,12 +1535,13 @@ export default {
           this.totalPage = res.data.count
           this.videoList = res.data.data.independentPostVideoDtos
 
-          if (this.totalPage < 10)
+          if (this.totalPage < 10) {
             this.totalPage = 1
-          else if (this.totalPage % 10 === 0)
+          } else if (this.totalPage % 10 === 0) {
             this.totalPage = parseInt(this.totalPage / 10)
-          else
+          } else {
             this.totalPage = parseInt(this.totalPage / 10) + 1
+          }
 
           console.log(res.data)
         })
@@ -1570,14 +1577,14 @@ export default {
     toggleLocationAuthentication() {
       this.$store.commit('toggleLocationAuthentication');
 
-      if (this.$store.state.locationAuthentication === true) 
-
+      if (this.$store.state.locationAuthentication === true) {
         this.$axios.post("/api/members/region", { region: this.$store.state.currentLocation }, {
 
           headers: {
             Authorization: this.$store.state.token, // 헤더에 토큰 추가
           },
-        });        
+        });
+      }        
     },
     totalSearch() {
       if (this.searchText !== '') {

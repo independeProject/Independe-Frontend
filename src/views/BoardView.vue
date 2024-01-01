@@ -911,7 +911,7 @@
           />
           <v-sheet :width="1150">
             <v-list
-              v-for="Board in Board"
+              v-for="Board in BoardList"
               :key="Board"
               style="overflow:hidden; font-size:14px"
             >
@@ -1455,32 +1455,34 @@ export default {
         this.regionCheck = index
         this.$store.state.boardCheck = index
 
-        if (this.$store.state.boardCheck === 0)
+        if (this.$store.state.boardCheck === 0) {
           this.region_all()
-        else if (this.$store.state.boardCheck === 1)
+        } else if (this.$store.state.boardCheck === 1) {
           this.region_seoul()
-        else if (this.$store.state.boardCheck === 2)
+        } else if (this.$store.state.boardCheck === 2) {
           this.region_busan()
-        else if (this.$store.state.boardCheck === 3)
+        } else if (this.$store.state.boardCheck === 3) {
           this.region_ulsan()
-        else if (this.$store.state.boardCheck === 4)
+        } else if (this.$store.state.boardCheck === 4) {
           this.region_kyeongnam()
+        }
 
-        if (this.areaCheck === 1)
-          if (index2 === 1)
+        if (this.areaCheck === 1) {
+          if (index2 === 1) {
             this.regionCategory_talk()
-          else if (index2 === 2)
+          } else if (index2 === 2) {
             this.regionCategory_restaurant()
-          else if (index2 === 3)
+          } else if (index2 === 3) {
             this.regionCategory_play()
-          else if (index2 === 4)
+          } else if (index2 === 4) {
             this.regionCategory_meet()
-          else if (index2 === 5)
+          } else if (index2 === 5) {
             this.regionCategory_market()
-          else if (index2 === 0)
+          } else if (index2 === 0) {
             this.region_all()
-      }
-      else {
+          }
+        }
+      } else {
         window.location.href = pathname;
       }
     })
@@ -1488,27 +1490,29 @@ export default {
   mounted() {
     this.$store.state.independentCheck = 5;
 
-    if (this.$store.state.boardCheck === 0)
+    if (this.$store.state.boardCheck === 0) {
       this.region_all();
-    else if (this.$store.state.boardCheck === 1)
+    } else if (this.$store.state.boardCheck === 1) {
       this.region_seoul();
-    else if (this.$store.state.boardCheck === 2)
+    } else if (this.$store.state.boardCheck === 2) {
       this.region_busan();
-    else if (this.$store.state.boardCheck === 3)
+    } else if (this.$store.state.boardCheck === 3) {
       this.region_ulsan();
-    else if (this.$store.state.boardCheck === 4)
+    } else if (this.$store.state.boardCheck === 4) {
       this.region_kyeongnam();
+    }
 
-    if (this.$store.state.categoryCheck === 1)
+    if (this.$store.state.categoryCheck === 1) {
       this.regionCategory_talk();
-    else if (this.$store.state.categoryCheck === 2)
+    } else if (this.$store.state.categoryCheck === 2) {
       this.regionCategory_restaurant();
-    else if (this.$store.state.categoryCheck === 3)
+    } else if (this.$store.state.categoryCheck === 3) {
       this.regionCategory_play();
-    else if (this.$store.state.categoryCheck === 4)
+    } else if (this.$store.state.categoryCheck === 4) {
       this.regionCategory_meet();
-    else if (this.$store.state.categoryCheck === 5)
+    } else if (this.$store.state.categoryCheck === 5) {
       this.regionCategory_market();
+    }
 
     this.date();
 
@@ -1519,8 +1523,9 @@ export default {
       this.boolAuthentication = false;
     }
 
-    if (this.getToken)
+    if (this.getToken) {
       this.loginToken();
+    }
   },
   methods: {
     updateBoardCheck(newValue) {
@@ -1551,12 +1556,13 @@ export default {
           this.totalPage = res.data.count;
 
           // 페이지 처리 코드...
-          if (this.totalPage < 10)
+          if (this.totalPage < 10) {
             this.totalPage = 1
-          else if (this.totalPage % 10 === 0)
+          } else if (this.totalPage % 10 === 0) {
             this.totalPage = parseInt(this.totalPage / 10)
-          else
+          } else {
             this.totalPage = parseInt(this.totalPage / 10) + 1
+          }
 
           console.log(res.data);
         })
@@ -1584,12 +1590,13 @@ export default {
           this.BoardList = res.data.data
           this.totalPage = res.data.count
 
-          if (this.totalPage < 10)
+          if (this.totalPage < 10) {
             this.totalPage = 1
-          else if (this.totalPage % 10 === 0)
+          } else if (this.totalPage % 10 === 0) {
             this.totalPage = parseInt(this.totalPage / 10)
-          else
+          } else {
             this.totalPage = parseInt(this.totalPage / 10) + 1
+          }
 
           this.searchKeyword = ''
           this.searchCondition = 0
@@ -1617,12 +1624,13 @@ export default {
           this.BoardList = res.data.data
           this.totalPage = res.data.count
 
-          if (this.totalPage < 10)
+          if (this.totalPage < 10) {
             this.totalPage = 1
-          else if (this.totalPage % 10 === 0)
+          } else if (this.totalPage % 10 === 0) {
             this.totalPage = parseInt(this.totalPage / 10)
-          else
+          } else {
             this.totalPage = parseInt(this.totalPage / 10) + 1
+          }
 
           this.searchKeyword = ''
           this.searchCondition = 0
@@ -1650,12 +1658,13 @@ export default {
           this.BoardList = res.data.data
           this.totalPage = res.data.count
 
-          if (this.totalPage < 10)
+          if (this.totalPage < 10) {
             this.totalPage = 1
-          else if (this.totalPage % 10 === 0)
+          } else if (this.totalPage % 10 === 0) {
             this.totalPage = parseInt(this.totalPage / 10)
-          else
+          } else {
             this.totalPage = parseInt(this.totalPage / 10) + 1
+          }
 
           this.searchKeyword = ''
           this.searchCondition = 0
@@ -1683,12 +1692,13 @@ export default {
           this.BoardList = res.data.data
           this.totalPage = res.data.count
 
-          if (this.totalPage < 10)
+          if (this.totalPage < 10) {
             this.totalPage = 1
-          else if (this.totalPage % 10 === 0)
+          } else if (this.totalPage % 10 === 0) {
             this.totalPage = parseInt(this.totalPage / 10)
-          else
+          } else {
             this.totalPage = parseInt(this.totalPage / 10) + 1
+          }
 
           this.searchKeyword = ''
           this.searchCondition = 0
@@ -1715,12 +1725,13 @@ export default {
           this.BoardList = res.data.data
           this.totalPage = res.data.count
 
-          if (this.totalPage < 10)
+          if (this.totalPage < 10) {
             this.totalPage = 1
-          else if (this.totalPage % 10 === 0)
+          } else if (this.totalPage % 10 === 0) {
             this.totalPage = parseInt(this.totalPage / 10)
-          else
+          } else {
             this.totalPage = parseInt(this.totalPage / 10) + 1
+          }
 
           this.searchKeyword = ''
           this.searchCondition = 0
@@ -1745,12 +1756,13 @@ export default {
           this.BoardList = res.data.data
           this.totalPage = res.data.count
 
-          if (this.totalPage < 10)
+          if (this.totalPage < 10) {
             this.totalPage = 1
-          else if (this.totalPage % 10 === 0)
+          } else if (this.totalPage % 10 === 0) {
             this.totalPage = parseInt(this.totalPage / 10)
-          else
+          } else {
             this.totalPage = parseInt(this.totalPage / 10) + 1
+          }
 
           this.searchKeyword = ''
           this.searchCondition = 0
@@ -1775,12 +1787,13 @@ export default {
           this.BoardList = res.data.data
           this.totalPage = res.data.count
 
-          if (this.totalPage < 10)
+          if (this.totalPage < 10) {
             this.totalPage = 1
-          else if (this.totalPage % 10 === 0)
+          } else if (this.totalPage % 10 === 0) {
             this.totalPage = parseInt(this.totalPage / 10)
-          else
+          } else {
             this.totalPage = parseInt(this.totalPage / 10) + 1
+          }
 
           this.searchKeyword = ''
           this.searchCondition = 0
@@ -1806,12 +1819,13 @@ export default {
           this.BoardList = res.data.data
           this.totalPage = res.data.count
 
-          if (this.totalPage < 10)
+          if (this.totalPage < 10) {
             this.totalPage = 1
-          else if (this.totalPage % 10 === 0)
+          } else if (this.totalPage % 10 === 0) {
             this.totalPage = parseInt(this.totalPage / 10)
-          else
+          } else {
             this.totalPage = parseInt(this.totalPage / 10) + 1
+          }
 
           this.searchKeyword = ''
           this.searchCondition = 0
@@ -1836,12 +1850,13 @@ export default {
           this.BoardList = res.data.data
           this.totalPage = res.data.count
 
-          if (this.totalPage < 10)
+          if (this.totalPage < 10) {
             this.totalPage = 1
-          else if (this.totalPage % 10 === 0)
+          } else if (this.totalPage % 10 === 0) {
             this.totalPage = parseInt(this.totalPage / 10)
-          else
+          } else {
             this.totalPage = parseInt(this.totalPage / 10) + 1
+          }
 
           this.searchKeyword = ''
           this.searchCondition = 0
@@ -1867,12 +1882,13 @@ export default {
           this.BoardList = res.data.data
           this.totalPage = res.data.count
 
-          if (this.totalPage < 10)
+          if (this.totalPage < 10) {
             this.totalPage = 1
-          else if (this.totalPage % 10 === 0)
+          } else if (this.totalPage % 10 === 0) {
             this.totalPage = parseInt(this.totalPage / 10)
-          else
+          } else {
             this.totalPage = parseInt(this.totalPage / 10) + 1
+          }
 
           this.searchKeyword = ''
           this.searchCondition = 0
@@ -1909,12 +1925,13 @@ export default {
     toggleLocationAuthentication() {
       this.$store.commit('toggleLocationAuthentication');
 
-      if (this.$store.state.locationAuthentication === true)
+      if (this.$store.state.locationAuthentication === true) {
         this.$axios.post("/api/members/region", { region: this.$store.state.currentLocation }, {
           headers: {
             Authorization: this.$store.state.token, // 헤더에 토큰 추가
           },
         });
+      }
     },
     totalSearch() {
       if (this.searchText !== '') {

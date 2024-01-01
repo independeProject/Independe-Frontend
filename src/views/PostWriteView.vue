@@ -802,10 +802,11 @@ export default {
     ...mapGetters(['getToken']),
   },
   mounted() {
-    if (this.boardCheck === 0)
+    if (this.boardCheck === 0) {
       this.active_tab = 1
-    else if (this.boardCheck === 1)
+    } else if (this.boardCheck === 1) {
       this.active_tab = 2
+    }
 
     const data = this.$route.query.data;
     const postId = this.$route.query.postId;
@@ -824,12 +825,13 @@ export default {
     if (this.$store.state.locationAuthentication === true) {
       this.getAddr();
       this.boolAuthentication = true
-    }
-    else
+    } else {
       this.boolAuthentication = false
+    }
 
-    if (this.getToken)
+    if (this.getToken) {
       this.loginToken()
+    }
   },
   methods: {
     setBoardCheck(value) {
@@ -867,16 +869,18 @@ export default {
 
       if (this.boardCheck === 0) {
         formData.append('regionType', this.regions[this.typeCheck])
-        if (this.typeCheck === 0)
+        if (this.typeCheck === 0) {
           formData.append('regionPostType', this.regionsPost[0])
-        else
+        } else {
           formData.append('regionPostType', this.regionsPost[this.categoryCheck + 1])
-      }
-      else if (this.boardCheck === 1)
+        }
+      } else if (this.boardCheck === 1) {
         formData.append('independentPostType', this.independents[this.typeCheck])
+      }
 
-      for (let i = 0; i < this.imageFiles.length; i++)
+      for (let i = 0; i < this.imageFiles.length; i++) {
         formData.append('files', this.imageFiles[i])
+      }
 
       if (this.boardCheck === 0) {
         const url = `/api/posts/region/new`;
@@ -888,8 +892,7 @@ export default {
           .catch(error => {
             console.log(error);
           });
-      }
-      else if (this.boardCheck === 1) {
+      } else if (this.boardCheck === 1) {
 
         const url = `/api/posts/independent/new`;
         this.$axios.post(url, formData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: this.$store.state.token } })
@@ -910,18 +913,20 @@ export default {
 
       if (this.boardCheck === 0) {
         formData.append('regionType', this.regions[this.typeCheck])
-        if (this.typeCheck === 0)
+        if (this.typeCheck === 0) {
           formData.append('regionPostType', this.regionsPost[0])
-        else
+        } else {
           formData.append('regionPostType', this.regionsPost[this.categoryCheck + 1])
-      }
-      else if (this.boardCheck === 1)
+        }
+      } else if (this.boardCheck === 1) {
         formData.append('independentPostType', this.independents[this.typeCheck])
+      }
 
-      for (let i = 0; i < this.imageFiles.length; i++)
+      for (let i = 0; i < this.imageFiles.length; i++) {
         formData.append('files', this.imageFiles[i])
+      }
       const url = `/api/posts/${this.updatePostId}`;
-      if (this.boardCheck === 0)
+      if (this.boardCheck === 0) {
         this.$axios.put(url, formData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: this.$store.state.token } })
           .then(res => {
             console.log(res.data);
@@ -930,7 +935,7 @@ export default {
           .catch(error => {
             console.log(error);
           });
-      else if (this.boardCheck === 1)
+      } else if (this.boardCheck === 1) {
         this.$axios.put(url, formData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: this.$store.state.token } })
           .then(res => {
             console.log(res.data);
@@ -939,6 +944,7 @@ export default {
           .catch(error => {
             console.log(error);
           });
+      }
     },
     deleteImage(index) {
       this.imageUrl.splice(index, 1)
@@ -951,12 +957,13 @@ export default {
     toggleLocationAuthentication() {
       this.$store.commit('toggleLocationAuthentication');
 
-      if (this.$store.state.locationAuthentication === true) 
+      if (this.$store.state.locationAuthentication === true) {
         this.$axios.post("/api/members/region", { region: this.$store.state.currentLocation }, {
           headers: {
             Authorization: this.$store.state.token, // 헤더에 토큰 추가
           },
-        });        
+        });
+      }        
     },
     totalSearch() {
       if (this.searchText !== '') {

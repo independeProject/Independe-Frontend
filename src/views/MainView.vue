@@ -525,7 +525,7 @@
               <v-row>
                 <v-col cols="auto">
                   <v-list
-                    v-for="popularBoard in popularBoard"
+                    v-for="popularBoard in popularBoardList"
                     :key="popularBoard"
                   >
                     <div v-if="popularBoard.independentPostType === null">
@@ -558,7 +558,7 @@
                 </v-col>
                 <v-col cols="6">
                   <v-list
-                    v-for="popularBoard in popularBoard"
+                    v-for="popularBoard in popularBoardList"
                     :key="popularBoard"
                   >
                     <div v-if="popularBoard.title.length <= 23">
@@ -598,7 +598,7 @@
                   class="mx-4"
                 >
                   <v-list
-                    v-for="popularBoard in popularBoard"
+                    v-for="popularBoard in popularBoardList"
                     :key="popularBoard"
                     style="overflow:hidden"
                   >
@@ -1416,11 +1416,9 @@ export default {
   mounted() {
     this.read();
 
-    if (this.$store.state.locationAuthentication === true)
-    {
+    if (this.$store.state.locationAuthentication === true) {
       this.boolAuthentication = true
-    }
-    else {
+    } else {
       this.boolAuthentication = false
     }
 
@@ -1434,8 +1432,9 @@ export default {
       this.saveToken(token); // 토큰 값을 Vuex 스토어에 저장
     }
 
-    if (this.getToken)
+    if (this.getToken) {
       this.loginToken()
+    }
   },
   methods: {
     ...mapActions(['saveToken']),
@@ -1461,13 +1460,13 @@ export default {
     toggleLocationAuthentication() {
       this.$store.commit('toggleLocationAuthentication');
 
-      if (this.$store.state.locationAuthentication === true)
-      {this.getAddr();
-       this.$axios.post("/api/members/region", { region: this.$store.state.currentLocation }, {
-         headers: {
-           Authorization: this.$store.state.token, // 헤더에 토큰 추가
-         },
-       });        
+      if (this.$store.state.locationAuthentication === true) {
+        this.getAddr();
+        this.$axios.post("/api/members/region", { region: this.$store.state.currentLocation }, {
+          headers: {
+            Authorization: this.$store.state.token, // 헤더에 토큰 추가
+          },
+        });        
       }
     },
     totalSearch() {

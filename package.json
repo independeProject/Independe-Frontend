@@ -50,7 +50,9 @@
       "parser": "@babel/eslint-parser"
     },
     "rules": {
-      "vue/script-indent": ["error"]
+      "curly": ["error"],
+      "vue/script-indent": ["error"],
+      "brace-style": ["error"]
     }
   },
   "browserslist": [

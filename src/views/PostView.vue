@@ -1075,12 +1075,13 @@ export default {
     if (this.$store.state.locationAuthentication === true) {
       this.getAddr();
       this.boolAuthentication = true
-    }
-    else
+    } else {
       this.boolAuthentication = false
+    }
 
-    if (this.getToken)
+    if (this.getToken) {
       this.loginToken()
+    }
 
   },
   methods: {
@@ -1299,13 +1300,13 @@ export default {
     toggleLocationAuthentication() {
       this.$store.commit('toggleLocationAuthentication');
 
-      if (this.$store.state.locationAuthentication === true)
-
+      if (this.$store.state.locationAuthentication === true) {
         this.$axios.post("/api/members/region", { region: this.$store.state.currentLocation }, {
           headers: {
             Authorization: this.$store.state.token, // 헤더에 토큰 추가
           },
         });
+      }
     },
     totalSearch() {
       if (this.searchText !== '') {

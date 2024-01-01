@@ -422,7 +422,7 @@
                 variant="flat"
                 color="#5E913B"
                 class="font-weight-bold"
-                @click="craete"
+                @click="create"
               >
                 <div
                   class="text-white"
@@ -654,10 +654,11 @@ export default {
           this.idDupCheck = res.data.idDuplicatedNot
           this.idDupBtn = this.idDupBtn + 1
 
-          if (this.idDupCheck === true)
+          if (this.idDupCheck === true) {
             this.idDuplicateCheck = true
-          else
+          } else {
             this.idDuplicateCheck = false
+          }
 
           console.log(this.idDupBtn)
           console.log(res.data.idDuplicatedNot)
@@ -672,10 +673,11 @@ export default {
           this.nicknameDupCheck = res.data.idDuplicatedNot
           this.nicknameDupBtn = this.nicknameDupBtn + 1
 
-          if (this.nicknameDupCheck === true)
+          if (this.nicknameDupCheck === true) {
             this.nicknameDuplicateCheck = true
-          else
+          } else {
             this.nicknameDuplicateCheck = false
+          }
 
           console.log(this.nicknameDupBtn)
           console.log(res.data.idDuplicatedNot)
@@ -684,9 +686,8 @@ export default {
           console.log(error);
         });
     },
-    craete() {
-      if (this.idDuplicateCheck && this.idDupBtn > 0 && this.passwordVaild && this.password !== '' && this.passwordCheck && this.passwordCk !== '' && this.nickname !== '' && this.nicknameDuplicateCheck && this.nicknameDupBtn > 0 && this.nickVaild && this.emailVaild && this.email !== '' && this.number !== '' && this.number.length === 13)
-      {
+    create() {
+      if (this.idDuplicateCheck && this.idDupBtn > 0 && this.passwordVaild && this.password !== '' && this.passwordCheck && this.passwordCk !== '' && this.nickname !== '' && this.nicknameDuplicateCheck && this.nicknameDupBtn > 0 && this.nickVaild && this.emailVaild && this.email !== '' && this.number !== '' && this.number.length === 13) {
         this.$axios.post("/api/members/new", { username: this.id, password: this.password, nickname: this.nickname, email: this.email, number: this.number })
           .then(res => {
             alert("회원가입이 완료되었습니다.")
@@ -696,13 +697,9 @@ export default {
           .catch(error => {
             console.log(error);
           });
-      }
-      else if(this.idDupBtn === 0 || this.nicknameDupBtn === 0)
-      {
+      } else if(this.idDupBtn === 0 || this.nicknameDupBtn === 0) {
         alert("중복확인을 해주세요.")
-      }
-      else
-      {
+      } else {
         alert("정보가 올바르지 않습니다. 다시 한 번 확인해 주세요.")
       }
     }

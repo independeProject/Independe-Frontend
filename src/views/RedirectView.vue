@@ -517,10 +517,11 @@ export default {
           this.nicknameDupCheck = res.data.idDuplicatedNot
           this.nicknameDupBtn = this.nicknameDupBtn + 1
 
-          if (this.nicknameDupCheck === true)
+          if (this.nicknameDupCheck === true) {
             this.nicknameDuplicateCheck = true
-          else
+          } else {
             this.nicknameDuplicateCheck = false
+          }
 
           console.log(this.nicknameDupBtn)
           console.log(res.data.idDuplicatedNot)
@@ -531,8 +532,7 @@ export default {
     },
     craete() {
       const Oauthtoken = this.getToken;
-      if (this.nickname !== '' && this.nicknameDuplicateCheck && this.nicknameDupBtn > 0 && this.nickVaild && this.emailVaild && this.email !== '' && this.number !== '' && this.number.length === 13)
-      {
+      if (this.nickname !== '' && this.nicknameDuplicateCheck && this.nicknameDupBtn > 0 && this.nickVaild && this.emailVaild && this.email !== '' && this.number !== '' && this.number.length === 13) {
         this.$axios.put("/api/members", { nickname: this.nickname, email: this.email, number: this.number }, { headers: {Authorization: Oauthtoken}})
           .then(res => {
             alert("회원가입이 완료되었습니다.")
@@ -542,13 +542,9 @@ export default {
           .catch(error => {
             console.log(error);
           });
-      }
-      else if(this.nicknameDupBtn === 0)
-      {
+      } else if(this.nicknameDupBtn === 0) {
         alert("중복확인을 해주세요.")
-      }
-      else
-      {
+      } else {
         alert("정보가 올바르지 않습니다. 다시 한 번 확인해 주세요.")
       }
             
