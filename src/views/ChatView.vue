@@ -482,66 +482,80 @@
         v-if="memberId"
         class="chat-input-container"
       >
-        <ul>
-          <li
-            v-for="chat in chatHistory"
-            :key="chat.message"
-          >
-            <div class="my-wrapper">
-              <div :class="{'my-message': chat.senderNickname === userNickName, 'your-message': chat.senderNickname !== userNickName}">
-                <ul v-if="chat.senderNickname !== userNickName">
-                  <li
-                    v-for="room in chatRooms"
-                    :key="room.chatRoomId"
+        <div>
+          <ul>
+            <li
+              v-for="chat in chatHistory"
+              :key="chat.message"
+            >
+              <div class="my-wrapper">
+                <div :class="{'my-message': chat.senderNickname === userNickName, 'your-message': chat.senderNickname !== userNickName}">
+                  <ul v-if="chat.senderNickname !== userNickName">
+                    <li
+                      v-for="room in chatRooms"
+                      :key="room.chatRoomId"
+                    >
+                      <span
+                        v-if="room.receiverId === memberId"
+                        class="receiver-nickname"
+                      >{{ room.receiverNickname }}</span>
+                    </li>
+                  </ul>
+                  <div
+                    v-if="chat.senderNickname !== userNickName"
+                    class="msg-your"
                   >
-                    <span
-                      v-if="room.receiverId == memberId"
-                      class="receiver-nickname"
-                    >{{ room.receiverNickname }}</span>
-                  </li>
-                </ul>
-                <div
-                  v-if="chat.senderNickname !== userNickName"
-                  class="msg-your"
-                >
-                  <span class="msg2">{{ chat.message }}</span>
-                  <span class="message-createdDate">{{ chat.createdDate }}</span>
-                </div>
-                <div
-                  v-else
-                  class="msg-my"
-                >
-                  <span class="message-createdDate">{{ chat.createdDate }}</span>
-                  <span class="msg2">{{ chat.message }}</span>
+                    <span class="msg2">{{ chat.message }}</span>
+                    <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(chat.createdDate) }}</span>
+                  </div>
+                  <div
+                    v-else
+                    class="msg-my"
+                  >
+                    <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(chat.createdDate) }}</span>
+                    <span class="msg2">{{ chat.message }}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>
-        </ul>
-        <ul>
-          <li
-            v-for="message in messages"
-            :key="message.id"
-          >
-            <div class="my-wrapper">
-              <div :class="{'my-message': message.senderNickname === userNickName, 'your-message': message.senderNickname !== userNickName}">
-                <ul v-if="message.senderNickname !== userNickName">
-                  <li
-                    v-for="room in chatRooms"
-                    :key="room.chatRoomId"
+            </li>
+          </ul>
+          <ul>
+            <li
+              v-for="message in messages"
+              :key="message.id"
+            >
+              <div class="my-wrapper">
+                <div :class="{'my-message': message.senderNickname === userNickName, 'your-message': message.senderNickname !== userNickName}">
+                  <ul v-if="message.senderNickname !== userNickName">
+                    <li
+                      v-for="room in chatRooms"
+                      :key="room.chatRoomId"
+                    >
+                      <span
+                        v-if="room.receiverId == memberId"
+                        class="receiver-nickname"
+                      >{{ room.receiverNickname }}</span>
+                    </li>
+                  </ul>
+                  <div
+                    v-if="message.senderNickname !== userNickName"
+                    class="msg-your"
                   >
-                    <span
-                      v-if="room.receiverId == memberId"
-                      class="receiver-nickname"
-                    >{{ room.receiverNickname }}</span>
-                  </li>
-                </ul>
-                <span class="msg">{{ message.message }}</span>
-                <span class="message-createdDate">{{ message.createdDate }}</span>
+                    <span class="msg">{{ message.message }}</span>
+                    <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(message.createdDate) }}</span>
+                  </div>
+                  <div
+                    v-else
+                    class="msg-my"
+                  >
+                    <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(message.createdDate) }}</span>
+                    <span class="msg">{{ message.message }}</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </li>
-        </ul>
+            </li>
+          </ul>
+        </div>
         <div class="input-container">
           <input
             v-model="newMessage"
@@ -858,17 +872,10 @@ export default {
     text-align: left;
     margin-bottom: 5px;
   }
-  .receiver-nickname {
-    position: relative;
-    left: -45px; /* 조정할 왼쪽 위치 값 */
-  }
-  
   .msg {
-      display: inline-block;
-      border-radius: 15px;
-      padding: 7px 15px;
-      margin-bottom: 10px;
-      margin-top: 5px;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 7px 15px;
   }
   .msg2{
     display: inline-block;
@@ -890,18 +897,25 @@ export default {
     background-color: #f1f0f0;
   }
   
-  .my-message > .msg {
+  .my-message .msg {
       background-color: #4A8522;
       color: #fff;
   }
-  .your-message > .msg {
+  .your-message .msg {
       background-color: #f1f0f0;
   }
   
   .message-createdDate {
     font-size: 0.8rem;
     color: gray;
-    left: -70px; /* 말풍선 왼쪽으로 이동하는 값 */
+  }
+
+  .msg-your .message-createdDate {
+    padding-left: 10px;
+  }
+
+  .msg-my .message-createdDate {
+    padding-right: 10px;
   }
   
   .input-container {
