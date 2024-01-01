@@ -1,87 +1,219 @@
 <template>
   <!--시스템 바-->
-  <v-app-bar height="80" :elevation="1">
+  <v-app-bar
+    height="80"
+    :elevation="1"
+  >
     <v-container>
       <v-row align="center">
         <v-col cols="2">
           <router-link to="/">
-            <v-img src="../img/logo.png" :style="{ 'max-height': '100px' }"></v-img>
+            <v-img
+              src="../img/logo.png"
+              :style="{ 'max-height': '100px' }"
+            />
           </router-link>
         </v-col>
         <v-col cols="5">
-          <v-tabs color="#5E913B" v-model="active_tab">
-            <router-link to="/" style="text-decoration: none; color:black;">
+          <v-tabs
+            v-model="active_tab"
+            color="#5E913B"
+          >
+            <router-link
+              to="/"
+              style="text-decoration: none; color:black;"
+            >
               <v-tab @click="$store.state.myGlobalVariable = 0">
-                <p class="font-weight-bold text-h6 mx-4">{{ link[0] }}</p>
+                <p class="font-weight-bold text-h6 mx-4">
+                  {{ link[0] }}
+                </p>
               </v-tab>
             </router-link>
-            <router-link to="/board/ALL/FREE" style="text-decoration: none; color:black;"
-              @click="$store.state.boardCheck = 0">
+            <router-link
+              to="/board/ALL/FREE"
+              style="text-decoration: none; color:black;"
+              @click="$store.state.boardCheck = 0"
+            >
               <v-menu open-on-hover>
-                <template v-slot:activator="{ props }">
+                <template #activator="{ props }">
                   <v-tab v-bind="props">
-                    <p class="font-weight-bold text-h6 mx-4">{{ link[1] }}</p>
+                    <p class="font-weight-bold text-h6 mx-4">
+                      {{ link[1] }}
+                    </p>
                   </v-tab>
                 </template>
                 <v-list>
                   <v-list-item align="center">
-                    <router-link to="/board/ALL/FREE" style="text-decoration: none; color:black;" @click="region_all">
-                      <v-list-item-title class="my-2" @click="$store.state.boardCheck = 0">자유</v-list-item-title>
+                    <router-link
+                      to="/board/ALL/FREE"
+                      style="text-decoration: none; color:black;"
+                      @click="region_all"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.boardCheck = 0"
+                      >
+                        자유
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/board/SEOUL/TALK" style="text-decoration: none; color:black;" @click="region_seoul">
-                      <v-list-item-title class="my-2" @click="$store.state.boardCheck = 1">서울</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/board/SEOUL/TALK"
+                      style="text-decoration: none; color:black;"
+                      @click="region_seoul"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.boardCheck = 1"
+                      >
+                        서울
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/board/PUSAN/TALK" style="text-decoration: none; color:black;" @click="region_busan">
-                      <v-list-item-title class="my-2" @click="$store.state.boardCheck = 2">부산</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/board/PUSAN/TALK"
+                      style="text-decoration: none; color:black;"
+                      @click="region_busan"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.boardCheck = 2"
+                      >
+                        부산
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/board/ULSAN/TALK" style="text-decoration: none; color:black;" @click="region_ulsan">
-                      <v-list-item-title class="my-2" @click="$store.state.boardCheck = 3">울산</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/board/ULSAN/TALK"
+                      style="text-decoration: none; color:black;"
+                      @click="region_ulsan"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.boardCheck = 3"
+                      >
+                        울산
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/board/KEYNONGNAM/TALK" style="text-decoration: none; color:black;"
-                      @click="region_kyeongnam">
-                      <v-list-item-title class="my-2" @click="$store.state.boardCheck = 4">경남</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/board/KEYNONGNAM/TALK"
+                      style="text-decoration: none; color:black;"
+                      @click="region_kyeongnam"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.boardCheck = 4"
+                      >
+                        경남
+                      </v-list-item-title>
                     </router-link>
                   </v-list-item>
                 </v-list>
               </v-menu>
             </router-link>
-            <router-link to="/independent/CLEAN" style="text-decoration: none; color:black;"
-              @click="$store.state.independentCheck = 0">
+            <router-link
+              to="/independent/CLEAN"
+              style="text-decoration: none; color:black;"
+              @click="$store.state.independentCheck = 0"
+            >
               <v-menu open-on-hover>
-                <template v-slot:activator="{ props }">
+                <template #activator="{ props }">
                   <v-tab v-bind="props">
-                    <p class="font-weight-bold text-h6 mx-4">{{ link[2] }}</p>
+                    <p class="font-weight-bold text-h6 mx-4">
+                      {{ link[2] }}
+                    </p>
                   </v-tab>
                 </template>
                 <v-list>
                   <v-list-item align="center">
-                    <router-link to="/independent/CLEAN" style="text-decoration: none; color:black;"
-                      @click="independent_clean">
-                      <v-list-item-title class="my-2" @click="$store.state.independentCheck = 0">청소</v-list-item-title>
+                    <router-link
+                      to="/independent/CLEAN"
+                      style="text-decoration: none; color:black;"
+                      @click="independent_clean"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.independentCheck = 0"
+                      >
+                        청소
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/independent/WASH" style="text-decoration: none; color:black;"
-                      @click="independent_wash">
-                      <v-list-item-title class="my-2" @click="$store.state.independentCheck = 1">세탁</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/independent/WASH"
+                      style="text-decoration: none; color:black;"
+                      @click="independent_wash"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.independentCheck = 1"
+                      >
+                        세탁
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/independent/COOK" style="text-decoration: none; color:black;"
-                      @click="independent_cook">
-                      <v-list-item-title class="my-2" @click="$store.state.independentCheck = 2">요리</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/independent/COOK"
+                      style="text-decoration: none; color:black;"
+                      @click="independent_cook"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.independentCheck = 2"
+                      >
+                        요리
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/independent/HEALTH" style="text-decoration: none; color:black;"
-                      @click="independent_health">
-                      <v-list-item-title class="my-2" @click="$store.state.independentCheck = 3">건강</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/independent/HEALTH"
+                      style="text-decoration: none; color:black;"
+                      @click="independent_health"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.independentCheck = 3"
+                      >
+                        건강
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/independent/ETC" style="text-decoration: none; color:black;"
-                      @click="independent_etc">
-                      <v-list-item-title class="my-2" @click="$store.state.independentCheck = 4">기타</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/independent/ETC"
+                      style="text-decoration: none; color:black;"
+                      @click="independent_etc"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.independentCheck = 4"
+                      >
+                        기타
+                      </v-list-item-title>
                     </router-link>
                   </v-list-item>
                 </v-list>
@@ -91,92 +223,203 @@
         </v-col>
         <v-col cols="3">
           <v-card-text>
-            <v-text-field v-model="searchText" :loading="error" density="compact" variant="outlined" label="통합검색"
-              append-inner-icon="mdi-magnify" single-line hide-details @click:append-inner="totalSearch"
-              @keydown.enter="totalSearch"></v-text-field>
+            <v-text-field
+              v-model="searchText"
+              :loading="error"
+              density="compact"
+              variant="outlined"
+              label="통합검색"
+              append-inner-icon="mdi-magnify"
+              single-line
+              hide-details
+              @click:append-inner="totalSearch"
+              @keydown.enter="totalSearch"
+            />
           </v-card-text>
         </v-col>
-        <v-col cols="1" v-if="!getToken">
+        <v-col
+          v-if="!getToken"
+          cols="1"
+        >
           <router-link to="/login">
-            <v-btn variant="flat" color="#5E913B" class="font-weight-bold" style="width:100%; height:40px">
-              <div class="text-white">로그인</div>
+            <v-btn
+              variant="flat"
+              color="#5E913B"
+              class="font-weight-bold"
+              style="width:100%; height:40px"
+            >
+              <div class="text-white">
+                로그인
+              </div>
             </v-btn>
           </router-link>
         </v-col>
-        <v-col cols="1" v-if="!getToken">
+        <v-col
+          v-if="!getToken"
+          cols="1"
+        >
           <router-link to="/signup">
-            <v-btn variant="flat" color="#5E913B" class="font-weight-bold" style="width:100%; height:40px">
-              <div class="text-white">회원가입</div>
+            <v-btn
+              variant="flat"
+              color="#5E913B"
+              class="font-weight-bold"
+              style="width:100%; height:40px"
+            >
+              <div class="text-white">
+                회원가입
+              </div>
             </v-btn>
           </router-link>
         </v-col>
-        <v-col cols="2" v-if="getToken">
-
+        <v-col
+          v-if="getToken"
+          cols="2"
+        >
           <v-menu :close-on-content-click="false">
-            <template v-slot:activator="{ props }">
-              <v-row align="center" justify="end">
-                <v-btn v-bind="props" class="font-weight-bold mr-3" variant="tonal" color="green-lighten-1">
-                  <v-img :height="25" :width="25" src="../img/user.png" style="color:#2E471D"></v-img>
-                  <span style="color: #5E913B;" class="font-weight-bold">{{ userNickName }}</span>
+            <template #activator="{ props }">
+              <v-row
+                align="center"
+                justify="end"
+              >
+                <v-btn
+                  v-bind="props"
+                  class="font-weight-bold mr-3"
+                  variant="tonal"
+                  color="green-lighten-1"
+                >
+                  <v-img
+                    :height="25"
+                    :width="25"
+                    src="../img/user.png"
+                    style="color:#2E471D"
+                  />
+                  <span
+                    style="color: #5E913B;"
+                    class="font-weight-bold"
+                  >{{ userNickName }}</span>
                 </v-btn>
               </v-row>
             </template>
-            <v-card :height="showLocationAuthentication ? 400 : 275" :width="250">
+            <v-card
+              :height="showLocationAuthentication ? 400 : 275"
+              :width="250"
+            >
               <v-list>
                 <v-list-item style="text-align: center;">
-                  <v-row class="mt-1" style="cursor: pointer;">
-                    <v-col cols=1></v-col>
+                  <v-row
+                    class="mt-1"
+                    style="cursor: pointer;"
+                  >
+                    <v-col cols="1" />
                     <v-col cols="auto">
-                      <v-img :height="25" :width="25" src="../img/infomation.png" class=""></v-img>
+                      <v-img
+                        :height="25"
+                        :width="25"
+                        src="../img/infomation.png"
+                        class=""
+                      />
                     </v-col>
-                    <v-col cols="2"></v-col>
+                    <v-col cols="2" />
                     <v-col cols="auto">
-                      <v-list-item-title style="font-size:18px" class="font-weight-bold">내 정보</v-list-item-title>
+                      <v-list-item-title
+                        style="font-size:18px"
+                        class="font-weight-bold"
+                      >
+                        내 정보
+                      </v-list-item-title>
                     </v-col>
                   </v-row>
-                  <v-divider :thickness="1" class="border-opacity-25 my-5"></v-divider>
+                  <v-divider
+                    :thickness="1"
+                    class="border-opacity-25 my-5"
+                  />
                   <v-row style="cursor: pointer;">
-                    <v-col cols=1></v-col>
+                    <v-col cols="1" />
                     <v-col cols="auto">
-                      <v-img :height="25" :width="25" src="../img/chatting.png" class=""></v-img>
+                      <v-img
+                        :height="25"
+                        :width="25"
+                        src="../img/chatting.png"
+                        class=""
+                      />
                     </v-col>
-                    <v-col cols="2"></v-col>
+                    <v-col cols="2" />
                     <v-col cols="auto">
-                      <router-link :to="`/chatRooms`" style="text-decoration: none; color:black;">
-                        <v-list-item-title style="font-size:18px" class="font-weight-bold">채팅</v-list-item-title>
+                      <router-link
+                        :to="`/chatRooms`"
+                        style="text-decoration: none; color:black;"
+                      >
+                        <v-list-item-title
+                          style="font-size:18px"
+                          class="font-weight-bold"
+                        >
+                          채팅
+                        </v-list-item-title>
                       </router-link>
                     </v-col>
                   </v-row>
-                  <v-divider :thickness="1" class="border-opacity-25 my-5"></v-divider>
-                  <v-row @click="showLocationAuthentication = !showLocationAuthentication" style="cursor: pointer;"
-                    class="mb-3">
-                    <v-col cols=1></v-col>
+                  <v-divider
+                    :thickness="1"
+                    class="border-opacity-25 my-5"
+                  />
+                  <v-row
+                    style="cursor: pointer;"
+                    class="mb-3"
+                    @click="showLocationAuthentication = !showLocationAuthentication"
+                  >
+                    <v-col cols="1" />
                     <v-col cols="auto">
-                      <v-img :height="25" :width="25" src="../img/location.png" class=""></v-img>
+                      <v-img
+                        :height="25"
+                        :width="25"
+                        src="../img/location.png"
+                        class=""
+                      />
                     </v-col>
-                    <v-col cols="2"></v-col>
+                    <v-col cols="2" />
                     <v-col cols="auto">
-                      <v-list-item-title style="font-size:18px" class="font-weight-bold">위치인증</v-list-item-title>
+                      <v-list-item-title
+                        style="font-size:18px"
+                        class="font-weight-bold"
+                      >
+                        위치인증
+                      </v-list-item-title>
                     </v-col>
                   </v-row>
 
                   <v-row v-if="showLocationAuthentication">
                     <v-col cols="12">
                       <v-sheet>
-                        <div style="text-align:center; color: gray; font-size:14px" class="font-weight-bold mb-1">현재위치불러오기
+                        <div
+                          style="text-align:center; color: gray; font-size:14px"
+                          class="font-weight-bold mb-1"
+                        >
+                          현재위치불러오기
                         </div>
                         <v-row>
                           <v-col cols="auto">
-                            <v-switch class="ml-3" color="success" v-model="boolAuthentication"
-                              @change="toggleLocationAuthentication"></v-switch>
+                            <v-switch
+                              v-model="boolAuthentication"
+                              class="ml-3"
+                              color="success"
+                              @change="toggleLocationAuthentication"
+                            />
                           </v-col>
-                          <v-col cols="auto" align="end" justify="end">
+                          <v-col
+                            cols="auto"
+                            align="end"
+                            justify="end"
+                          >
                             <div v-if="$store.state.locationAuthentication">
-                              <div class="mt-4 font-weight-bold">현재위치 : <span style="color: #5E913B">{{
-                                $store.state.currentLocation }}</span></div>
+                              <div class="mt-4 font-weight-bold">
+                                현재위치 : <span style="color: #5E913B">{{
+                                  $store.state.currentLocation }}</span>
+                              </div>
                             </div>
                             <div v-else>
-                              <div class="mt-4 font-weight-bold">현재위치 : <span style="color: #5E913B">인증필요</span></div>
+                              <div class="mt-4 font-weight-bold">
+                                현재위치 : <span style="color: #5E913B">인증필요</span>
+                              </div>
                             </div>
                           </v-col>
                         </v-row>
@@ -184,16 +427,29 @@
                     </v-col>
                   </v-row>
 
-                  <v-divider :thickness="1" class="border-opacity-25 mb-5"></v-divider>
+                  <v-divider
+                    :thickness="1"
+                    class="border-opacity-25 mb-5"
+                  />
                   <v-row style="cursor: pointer;">
-                    <v-col cols=1></v-col>
+                    <v-col cols="1" />
                     <v-col cols="auto">
-                      <v-img :height="25" :width="25" src="../img/logout.png" class=""></v-img>
+                      <v-img
+                        :height="25"
+                        :width="25"
+                        src="../img/logout.png"
+                        class=""
+                      />
                     </v-col>
-                    <v-col cols="2"></v-col>
+                    <v-col cols="2" />
                     <v-col cols="auto">
-                      <v-list-item-title @click="handleLogout" style="font-size:18px"
-                        class="font-weight-bold">로그아웃</v-list-item-title>
+                      <v-list-item-title
+                        style="font-size:18px"
+                        class="font-weight-bold"
+                        @click="handleLogout"
+                      >
+                        로그아웃
+                      </v-list-item-title>
                     </v-col>
                   </v-row>
                 </v-list-item>
@@ -241,82 +497,203 @@
   <v-app>
     <v-main>
       <v-container>
-        <v-row justify="center" class="mt-2">
+        <v-row
+          justify="center"
+          class="mt-2"
+        >
           <v-sheet :width="900">
             <v-row>
-              <v-col cols="auto" class="mt-1">
-                <v-img :width="30" height="30" src="../img/board_write.png"></v-img>
+              <v-col
+                cols="auto"
+                class="mt-1"
+              >
+                <v-img
+                  :width="30"
+                  height="30"
+                  src="../img/board_write.png"
+                />
               </v-col>
-              <v-col cols="2" class="mt-1">
-                <p class="font-weight-bold text-h5"> {{ boardName[boardNameCheck] }}</p>
+              <v-col
+                cols="2"
+                class="mt-1"
+              >
+                <p class="font-weight-bold text-h5">
+                  {{ boardName[boardNameCheck] }}
+                </p>
               </v-col>
             </v-row>
             <v-row>
               <div v-if="boardCheck === 0 && typeCheck !== 0">
                 <v-col cols="auto">
                   <v-menu>
-                    <template v-slot:activator="{ props }">
-                      <v-btn style="height: 55px; color:#A9A9A9" v-bind="props" variant="outlined">
-                        <p style="font-size:16px; color:black">{{ category[categoryCheck] }} ▽</p>
+                    <template #activator="{ props }">
+                      <v-btn
+                        style="height: 55px; color:#A9A9A9"
+                        v-bind="props"
+                        variant="outlined"
+                      >
+                        <p style="font-size:16px; color:black">
+                          {{ category[categoryCheck] }} ▽
+                        </p>
                       </v-btn>
                     </template>
                     <v-list>
                       <v-list-item style="text-align: center;">
-                        <v-list-item-title @click="categoryCheck = 0" class="my-2">잡담</v-list-item-title>
-                        <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                        <v-list-item-title @click="categoryCheck = 1" class="my-2">식당</v-list-item-title>
-                        <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                        <v-list-item-title @click="categoryCheck = 2" class="my-2">오락</v-list-item-title>
-                        <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                        <v-list-item-title @click="categoryCheck = 3" class="my-2">만남</v-list-item-title>
-                        <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                        <v-list-item-title @click="categoryCheck = 4" class="my-2">거래</v-list-item-title>
+                        <v-list-item-title
+                          class="my-2"
+                          @click="categoryCheck = 0"
+                        >
+                          잡담
+                        </v-list-item-title>
+                        <v-divider
+                          :thickness="1"
+                          class="border-opacity-25 mb-2"
+                        />
+                        <v-list-item-title
+                          class="my-2"
+                          @click="categoryCheck = 1"
+                        >
+                          식당
+                        </v-list-item-title>
+                        <v-divider
+                          :thickness="1"
+                          class="border-opacity-25 mb-2"
+                        />
+                        <v-list-item-title
+                          class="my-2"
+                          @click="categoryCheck = 2"
+                        >
+                          오락
+                        </v-list-item-title>
+                        <v-divider
+                          :thickness="1"
+                          class="border-opacity-25 mb-2"
+                        />
+                        <v-list-item-title
+                          class="my-2"
+                          @click="categoryCheck = 3"
+                        >
+                          만남
+                        </v-list-item-title>
+                        <v-divider
+                          :thickness="1"
+                          class="border-opacity-25 mb-2"
+                        />
+                        <v-list-item-title
+                          class="my-2"
+                          @click="categoryCheck = 4"
+                        >
+                          거래
+                        </v-list-item-title>
                       </v-list-item>
                     </v-list>
                   </v-menu>
                 </v-col>
               </div>
               <v-col>
-                <v-text-field v-model="title" variant="outlined" placeholder="제목을 입력해주세요"></v-text-field>
+                <v-text-field
+                  v-model="title"
+                  variant="outlined"
+                  placeholder="제목을 입력해주세요"
+                />
               </v-col>
             </v-row>
-            <v-textarea class="no-resize" rows="20" variant="outlined" v-model="content" placeholder="- 게시판 카테고리에 맞지 않는 글은 숨김 처리 될수도 있음을 알려드립니다.
+            <v-textarea
+              v-model="content"
+              class="no-resize"
+              rows="20"
+              variant="outlined"
+              placeholder="- 게시판 카테고리에 맞지 않는 글은 숨김 처리 될수도 있음을 알려드립니다.
   - 다른 유저로 부터 일정 수 이상의 신고를 받으면 글은 숨김 처리 될수도 있음을 알려드립니다.
   - 욕설이나 시비, 분쟁과 관련된 글과 불쾌감을 주는 글은 규칙 위반입니다.
   - 범죄, 불법 행위의 글과 음란물과 관련한 글은 규칙 위반입니다.
-  - 매너있는 게시판 이용 부탁드립니다.">
-            </v-textarea>
+  - 매너있는 게시판 이용 부탁드립니다."
+            />
 
             <div>
               <!--<input type="file" ref="fileInput" v-on:change="previewImage">-->
               <v-row>
                 <v-col cols="7">
-                  <v-file-input multiple variant="outlined" prepend-icon="mdi-camera" ref="fileInput"
-                    v-on:change="previewImage" accept="video/*,image/*" label="이미지를 첨부하세요"></v-file-input>
+                  <v-file-input
+                    ref="fileInput"
+                    multiple
+                    variant="outlined"
+                    prepend-icon="mdi-camera"
+                    accept="video/*,image/*"
+                    label="이미지를 첨부하세요"
+                    @change="previewImage"
+                  />
                 </v-col>
                 <v-col align="end">
-                  <v-btn style="height:55px; width: 100px;" class="mr-5" @click="cancle">
-                    <div style="font-size:16px">취소</div>
+                  <v-btn
+                    style="height:55px; width: 100px;"
+                    class="mr-5"
+                    @click="cancle"
+                  >
+                    <div style="font-size:16px">
+                      취소
+                    </div>
                   </v-btn>
-                  <v-btn @click="writeCheck === 1 ? update() : write()" style="height:55px; width: 100px;" variant="flat"
-                    color="#5E913B" class="font-weight-bold">
-                    <div class="text-white" style="font-size:16px">글 등록</div>
+                  <v-btn
+                    style="height:55px; width: 100px;"
+                    variant="flat"
+                    color="#5E913B"
+                    class="font-weight-bold"
+                    @click="writeCheck === 1 ? update() : write()"
+                  >
+                    <div
+                      class="text-white"
+                      style="font-size:16px"
+                    >
+                      글 등록
+                    </div>
                   </v-btn>
                 </v-col>
               </v-row>
 
-              <v-sheet v-if="imageCheck !== 0" border width="900" style="border-color:#B0B0B0; border-radius: 5px;">
+              <v-sheet
+                v-if="imageCheck !== 0"
+                border
+                width="900"
+                style="border-color:#B0B0B0; border-radius: 5px;"
+              >
                 <v-row>
-                  <v-col v-for="(url, index) in imageUrl" :key="index" cols="auto" align="center">
+                  <v-col
+                    v-for="(url, index) in imageUrl"
+                    :key="index"
+                    cols="auto"
+                    align="center"
+                  >
                     <v-col justify="center">
-                      <v-sheet border width="136" style="border-color:#B0B0B0; border-radius: 5px;">
-                        <v-img :src="url" height="100" width="100" class="mt-1"></v-img>
-                        <v-btn @click="deleteImage(index)" class="my-1" variant="text">이미지 삭제</v-btn>
+                      <v-sheet
+                        border
+                        width="136"
+                        style="border-color:#B0B0B0; border-radius: 5px;"
+                      >
+                        <v-img
+                          :src="url"
+                          height="100"
+                          width="100"
+                          class="mt-1"
+                        />
+                        <v-btn
+                          class="my-1"
+                          variant="text"
+                          @click="deleteImage(index)"
+                        >
+                          이미지 삭제
+                        </v-btn>
                       </v-sheet>
                     </v-col>
                   </v-col>
                 </v-row>
-                <p align="center" class="my-1" style="color:#A9A9A9">이미지는 최대 10개 까지 업로드 할 수 있습니다.</p>
+                <p
+                  align="center"
+                  class="my-1"
+                  style="color:#A9A9A9"
+                >
+                  이미지는 최대 10개 까지 업로드 할 수 있습니다.
+                </p>
               </v-sheet>
             </div>
           </v-sheet>
@@ -326,13 +703,23 @@
   </v-app>
 
   <!--푸터-->
-  <v-footer border class="mt-5">
+  <v-footer
+    border
+    class="mt-5"
+  >
     <v-container>
       <v-row>
-        <v-col cols="3"></v-col>
+        <v-col cols="3" />
         <v-col cols="6">
-          <v-sheet height="80" width="650" align="center">
-            <v-row justify="center" class="text-grey-lighten-1">
+          <v-sheet
+            height="80"
+            width="650"
+            align="center"
+          >
+            <v-row
+              justify="center"
+              class="text-grey-lighten-1"
+            >
               <v-col cols="auto">
                 <p>서비스 소개</p>
               </v-col>
@@ -343,7 +730,11 @@
                 <p>이용약관</p>
               </v-col>
             </v-row>
-            <v-row class="text-grey-lighten-2" style="font-size:12px" justify="center">
+            <v-row
+              class="text-grey-lighten-2"
+              style="font-size:12px"
+              justify="center"
+            >
               <v-col cols="auto">
                 <p>[팀] 인디펜더</p>
               </v-col>
@@ -356,7 +747,7 @@
             </v-row>
           </v-sheet>
         </v-col>
-        <v-col cols="3"> </v-col>
+        <v-col cols="3" />
       </v-row>
     </v-container>
   </v-footer>
@@ -406,6 +797,39 @@ export default {
       searchText: '', // 검색어를 저장하는 데이터 속성
       error: false, // 로딩 상태를 나타내는 데이터 속성
     }
+  },
+  computed: {
+    ...mapGetters(['getToken']),
+  },
+  mounted() {
+    if (this.boardCheck === 0)
+      this.active_tab = 1
+    else if (this.boardCheck === 1)
+      this.active_tab = 2
+
+    const data = this.$route.query.data;
+    const postId = this.$route.query.postId;
+    if (data && typeof data === 'string' && postId) {
+      this.writeCheck = 1;
+      const parsedData = JSON.parse(data);
+      this.title = parsedData.title;
+      this.content = parsedData.content;
+      this.updatePostId = postId;
+      // ... (다른 필드에도 바인딩)
+    } else {
+      this.writeCheck = 0;
+      console.log('글쓰기');
+    }
+
+    if (this.$store.state.locationAuthentication === true) {
+      this.getAddr();
+      this.boolAuthentication = true
+    }
+    else
+      this.boolAuthentication = false
+
+    if (this.getToken)
+      this.loginToken()
   },
   methods: {
     setBoardCheck(value) {
@@ -496,7 +920,7 @@ export default {
 
       for (let i = 0; i < this.imageFiles.length; i++)
         formData.append('files', this.imageFiles[i])
-        const url = `/api/posts/${this.updatePostId}`;
+      const url = `/api/posts/${this.updatePostId}`;
       if (this.boardCheck === 0)
         this.$axios.put(url, formData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: this.$store.state.token } })
           .then(res => {
@@ -529,10 +953,10 @@ export default {
 
       if (this.$store.state.locationAuthentication === true) 
         this.$axios.post("/api/members/region", { region: this.$store.state.currentLocation }, {
-        headers: {
-          Authorization: this.$store.state.token, // 헤더에 토큰 추가
-        },
-      });        
+          headers: {
+            Authorization: this.$store.state.token, // 헤더에 토큰 추가
+          },
+        });        
     },
     totalSearch() {
       if (this.searchText !== '') {
@@ -582,40 +1006,7 @@ export default {
       const claims = JSON.parse(decodedPayload);
       this.userNickName = claims.nickname;
     }
-  },
-  mounted() {
-    if (this.boardCheck === 0)
-      this.active_tab = 1
-    else if (this.boardCheck === 1)
-      this.active_tab = 2
-
-      const data = this.$route.query.data;
-const postId = this.$route.query.postId;
-if (data && typeof data === 'string' && postId) {
-  this.writeCheck = 1;
-  const parsedData = JSON.parse(data);
-  this.title = parsedData.title;
-  this.content = parsedData.content;
-  this.updatePostId = postId;
-  // ... (다른 필드에도 바인딩)
-} else {
-  this.writeCheck = 0;
-  console.log('글쓰기');
-}
-
-if (this.$store.state.locationAuthentication === true) {
-      this.getAddr();
-      this.boolAuthentication = true
-    }
-    else
-      this.boolAuthentication = false
-
-    if (this.getToken)
-      this.loginToken()
-  },
-  computed: {
-    ...mapGetters(['getToken']),
-  },
+  }
 }   
 </script>
 

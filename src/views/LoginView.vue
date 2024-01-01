@@ -3,87 +3,141 @@
     <v-main>
       <v-container>
         <v-row class="mt-15">
-          <v-col cols="5"></v-col>
+          <v-col cols="5" />
           <v-col cols="2">
-            <v-img :width="1000" src="../img/logo.png"></v-img>
+            <v-img
+              :width="1000"
+              src="../img/logo.png"
+            />
           </v-col>
-          <v-col cols="5"></v-col>
+          <v-col cols="5" />
         </v-row>
 
         <v-row class="mt-3">
-          <v-col cols="3"></v-col>
+          <v-col cols="3" />
           <v-col cols="6">
-            <v-divider :thickness="2" class="border-opacity-25 my-5"></v-divider>
+            <v-divider
+              :thickness="2"
+              class="border-opacity-25 my-5"
+            />
           </v-col>
-          <v-col cols="3"></v-col>
+          <v-col cols="3" />
         </v-row>
 
         <v-row class="mt-3">
-          <v-col cols="3"></v-col>
+          <v-col cols="3" />
           <v-col cols="6">
             <v-row>
               <v-col>
-                <div style="font-size: 20px">아이디</div>
+                <div style="font-size: 20px">
+                  아이디
+                </div>
               </v-col>
             </v-row>
             <v-row>
               <v-col>
-                <v-text-field v-model="username" placeholder="ID" variant="outlined"></v-text-field>
+                <v-text-field
+                  v-model="username"
+                  placeholder="ID"
+                  variant="outlined"
+                />
               </v-col>
             </v-row>
 
             <v-row>
               <v-col>
-                <div style="font-size: 20px">비밀번호</div>
+                <div style="font-size: 20px">
+                  비밀번호
+                </div>
               </v-col>
             </v-row>
             <v-row class="mb-5">
               <v-col>
-                <v-text-field v-model="password" type="password" placeholder="password" variant="outlined"></v-text-field>
+                <v-text-field
+                  v-model="password"
+                  type="password"
+                  placeholder="password"
+                  variant="outlined"
+                />
               </v-col>
             </v-row>
 
             <v-row class="mt-10 mb-5">
               <v-col align="center">
-                <v-btn @click="login()" style="height: 60px; width: 5000px" variant="flat" color="#6DA945" class="font-weight-bold">
-                  <div class="text-white" style="font-size: 20px">로그인</div>
+                <v-btn
+                  style="height: 60px; width: 5000px"
+                  variant="flat"
+                  color="#6DA945"
+                  class="font-weight-bold"
+                  @click="login()"
+                >
+                  <div
+                    class="text-white"
+                    style="font-size: 20px"
+                  >
+                    로그인
+                  </div>
                 </v-btn>
               </v-col>
             </v-row>
           </v-col>
-          <v-col cols="3"></v-col>
+          <v-col cols="3" />
         </v-row>
         <v-container class="mt-5">
-          <v-row justify="center" align="center" class="mb-5">
-            <div class="font-weight-bold mt-5" style="color: gray; font-size: 20px">SNS로 로그인 하기</div>
+          <v-row
+            justify="center"
+            align="center"
+            class="mb-5"
+          >
+            <div
+              class="font-weight-bold mt-5"
+              style="color: gray; font-size: 20px"
+            >
+              SNS로 로그인 하기
+            </div>
           </v-row>
-          <v-row justify="center" class="mb-5">
+          <v-row
+            justify="center"
+            class="mb-5"
+          >
             <v-col cols="1">
               <a :href="`${domain}/oauth2/authorization/naver?redirect_uri=${domain}/redirect`">
-                <v-img :height="75" src="../img/naver.png"></v-img>
+                <v-img
+                  :height="75"
+                  src="../img/naver.png"
+                />
               </a>
             </v-col>
             <v-col cols="1">
               <a :href="`${domain}/oauth2/authorization/kakao?redirect_uri=${domain}/redirect`">
-                <v-img :height="75" src="../img/kakaoTalk.png"></v-img>
+                <v-img
+                  :height="75"
+                  src="../img/kakaoTalk.png"
+                />
               </a>
             </v-col>
           </v-row>
         </v-container>
 
         <v-row>
-          <v-col cols="3"></v-col>
+          <v-col cols="3" />
           <v-col cols="6">
-            <v-divider :thickness="2" class="border-opacity-25"></v-divider>
+            <v-divider
+              :thickness="2"
+              class="border-opacity-25"
+            />
           </v-col>
-          <v-col cols="3"></v-col>
+          <v-col cols="3" />
         </v-row>
 
         <v-row>
-          <v-col cols="3"></v-col>
-          <v-col cols="6" align="end">
+          <v-col cols="3" />
+          <v-col
+            cols="6"
+            align="end"
+          >
             <v-row style="color: #5e913b">
-              <v-col cols="5"></v-col>
+              <v-col cols="5" />
               <v-col>
                 <div>회원가입</div>
               </v-col>
@@ -95,7 +149,7 @@
               </v-col>
             </v-row>
           </v-col>
-          <v-col cols="3"></v-col>
+          <v-col cols="3" />
         </v-row>
 
         <!-- <a href="http://192.168.0.18:8080/oauth2/authorization/naver?redirect_uri=http://localhost:3001/oauth/redirect">asdads</a> -->
@@ -104,13 +158,23 @@
   </v-app>
 
   <!--푸터-->
-  <v-footer border class="mt-5">
+  <v-footer
+    border
+    class="mt-5"
+  >
     <v-container>
       <v-row>
-        <v-col cols="3"></v-col>
+        <v-col cols="3" />
         <v-col cols="6">
-          <v-sheet height="80" width="650" align="center">
-            <v-row justify="center" class="text-grey-lighten-1">
+          <v-sheet
+            height="80"
+            width="650"
+            align="center"
+          >
+            <v-row
+              justify="center"
+              class="text-grey-lighten-1"
+            >
               <v-col cols="auto">
                 <p>서비스 소개</p>
               </v-col>
@@ -121,7 +185,11 @@
                 <p>이용약관</p>
               </v-col>
             </v-row>
-            <v-row class="text-grey-lighten-2" style="font-size: 12px" justify="center">
+            <v-row
+              class="text-grey-lighten-2"
+              style="font-size: 12px"
+              justify="center"
+            >
               <v-col cols="auto">
                 <p>[팀] 인디펜더</p>
               </v-col>
@@ -134,7 +202,7 @@
             </v-row>
           </v-sheet>
         </v-col>
-        <v-col cols="3"> </v-col>
+        <v-col cols="3" />
       </v-row>
     </v-container>
   </v-footer>

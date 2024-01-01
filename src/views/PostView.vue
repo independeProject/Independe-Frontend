@@ -1,87 +1,219 @@
 <template>
   <!--시스템 바-->
-  <v-app-bar height="80" :elevation="1">
+  <v-app-bar
+    height="80"
+    :elevation="1"
+  >
     <v-container>
       <v-row align="center">
         <v-col cols="2">
           <router-link to="/">
-            <v-img src="../img/logo.png" :style="{ 'max-height': '100px' }"></v-img>
+            <v-img
+              src="../img/logo.png"
+              :style="{ 'max-height': '100px' }"
+            />
           </router-link>
         </v-col>
         <v-col cols="5">
-          <v-tabs color="#5E913B" v-model="active_tab">
-            <router-link to="/" style="text-decoration: none; color:black;">
+          <v-tabs
+            v-model="active_tab"
+            color="#5E913B"
+          >
+            <router-link
+              to="/"
+              style="text-decoration: none; color:black;"
+            >
               <v-tab @click="$store.state.myGlobalVariable = 0">
-                <p class="font-weight-bold text-h6 mx-4">{{ link[0] }}</p>
+                <p class="font-weight-bold text-h6 mx-4">
+                  {{ link[0] }}
+                </p>
               </v-tab>
             </router-link>
-            <router-link to="/board/ALL/FREE" style="text-decoration: none; color:black;"
-              @click="$store.state.boardCheck = 0">
+            <router-link
+              to="/board/ALL/FREE"
+              style="text-decoration: none; color:black;"
+              @click="$store.state.boardCheck = 0"
+            >
               <v-menu open-on-hover>
-                <template v-slot:activator="{ props }">
+                <template #activator="{ props }">
                   <v-tab v-bind="props">
-                    <p class="font-weight-bold text-h6 mx-4">{{ link[1] }}</p>
+                    <p class="font-weight-bold text-h6 mx-4">
+                      {{ link[1] }}
+                    </p>
                   </v-tab>
                 </template>
                 <v-list>
                   <v-list-item align="center">
-                    <router-link to="/board/ALL/FREE" style="text-decoration: none; color:black;" @click="region_all">
-                      <v-list-item-title class="my-2" @click="$store.state.boardCheck = 0">자유</v-list-item-title>
+                    <router-link
+                      to="/board/ALL/FREE"
+                      style="text-decoration: none; color:black;"
+                      @click="region_all"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.boardCheck = 0"
+                      >
+                        자유
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/board/SEOUL/TALK" style="text-decoration: none; color:black;" @click="region_seoul">
-                      <v-list-item-title class="my-2" @click="$store.state.boardCheck = 1">서울</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/board/SEOUL/TALK"
+                      style="text-decoration: none; color:black;"
+                      @click="region_seoul"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.boardCheck = 1"
+                      >
+                        서울
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/board/PUSAN/TALK" style="text-decoration: none; color:black;" @click="region_busan">
-                      <v-list-item-title class="my-2" @click="$store.state.boardCheck = 2">부산</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/board/PUSAN/TALK"
+                      style="text-decoration: none; color:black;"
+                      @click="region_busan"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.boardCheck = 2"
+                      >
+                        부산
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/board/ULSAN/TALK" style="text-decoration: none; color:black;" @click="region_ulsan">
-                      <v-list-item-title class="my-2" @click="$store.state.boardCheck = 3">울산</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/board/ULSAN/TALK"
+                      style="text-decoration: none; color:black;"
+                      @click="region_ulsan"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.boardCheck = 3"
+                      >
+                        울산
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/board/KEYNONGNAM/TALK" style="text-decoration: none; color:black;"
-                      @click="region_kyeongnam">
-                      <v-list-item-title class="my-2" @click="$store.state.boardCheck = 4">경남</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/board/KEYNONGNAM/TALK"
+                      style="text-decoration: none; color:black;"
+                      @click="region_kyeongnam"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.boardCheck = 4"
+                      >
+                        경남
+                      </v-list-item-title>
                     </router-link>
                   </v-list-item>
                 </v-list>
               </v-menu>
             </router-link>
-            <router-link to="/independent/CLEAN" style="text-decoration: none; color:black;"
-              @click="$store.state.independentCheck = 0">
+            <router-link
+              to="/independent/CLEAN"
+              style="text-decoration: none; color:black;"
+              @click="$store.state.independentCheck = 0"
+            >
               <v-menu open-on-hover>
-                <template v-slot:activator="{ props }">
+                <template #activator="{ props }">
                   <v-tab v-bind="props">
-                    <p class="font-weight-bold text-h6 mx-4">{{ link[2] }}</p>
+                    <p class="font-weight-bold text-h6 mx-4">
+                      {{ link[2] }}
+                    </p>
                   </v-tab>
                 </template>
                 <v-list>
                   <v-list-item align="center">
-                    <router-link to="/independent/CLEAN" style="text-decoration: none; color:black;"
-                      @click="independent_clean">
-                      <v-list-item-title class="my-2" @click="$store.state.independentCheck = 0">청소</v-list-item-title>
+                    <router-link
+                      to="/independent/CLEAN"
+                      style="text-decoration: none; color:black;"
+                      @click="independent_clean"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.independentCheck = 0"
+                      >
+                        청소
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/independent/WASH" style="text-decoration: none; color:black;"
-                      @click="independent_wash">
-                      <v-list-item-title class="my-2" @click="$store.state.independentCheck = 1">세탁</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/independent/WASH"
+                      style="text-decoration: none; color:black;"
+                      @click="independent_wash"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.independentCheck = 1"
+                      >
+                        세탁
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/independent/COOK" style="text-decoration: none; color:black;"
-                      @click="independent_cook">
-                      <v-list-item-title class="my-2" @click="$store.state.independentCheck = 2">요리</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/independent/COOK"
+                      style="text-decoration: none; color:black;"
+                      @click="independent_cook"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.independentCheck = 2"
+                      >
+                        요리
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/independent/HEALTH" style="text-decoration: none; color:black;"
-                      @click="independent_health">
-                      <v-list-item-title class="my-2" @click="$store.state.independentCheck = 3">건강</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/independent/HEALTH"
+                      style="text-decoration: none; color:black;"
+                      @click="independent_health"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.independentCheck = 3"
+                      >
+                        건강
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/independent/ETC" style="text-decoration: none; color:black;"
-                      @click="independent_etc">
-                      <v-list-item-title class="my-2" @click="$store.state.independentCheck = 4">기타</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/independent/ETC"
+                      style="text-decoration: none; color:black;"
+                      @click="independent_etc"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.independentCheck = 4"
+                      >
+                        기타
+                      </v-list-item-title>
                     </router-link>
                   </v-list-item>
                 </v-list>
@@ -91,92 +223,203 @@
         </v-col>
         <v-col cols="3">
           <v-card-text>
-            <v-text-field v-model="searchText" :loading="error" density="compact" variant="outlined" label="통합검색"
-              append-inner-icon="mdi-magnify" single-line hide-details @click:append-inner="totalSearch"
-              @keydown.enter="totalSearch"></v-text-field>
+            <v-text-field
+              v-model="searchText"
+              :loading="error"
+              density="compact"
+              variant="outlined"
+              label="통합검색"
+              append-inner-icon="mdi-magnify"
+              single-line
+              hide-details
+              @click:append-inner="totalSearch"
+              @keydown.enter="totalSearch"
+            />
           </v-card-text>
         </v-col>
-        <v-col cols="1" v-if="!getToken">
+        <v-col
+          v-if="!getToken"
+          cols="1"
+        >
           <router-link to="/login">
-            <v-btn variant="flat" color="#5E913B" class="font-weight-bold" style="width:100%; height:40px">
-              <div class="text-white">로그인</div>
+            <v-btn
+              variant="flat"
+              color="#5E913B"
+              class="font-weight-bold"
+              style="width:100%; height:40px"
+            >
+              <div class="text-white">
+                로그인
+              </div>
             </v-btn>
           </router-link>
         </v-col>
-        <v-col cols="1" v-if="!getToken">
+        <v-col
+          v-if="!getToken"
+          cols="1"
+        >
           <router-link to="/signup">
-            <v-btn variant="flat" color="#5E913B" class="font-weight-bold" style="width:100%; height:40px">
-              <div class="text-white">회원가입</div>
+            <v-btn
+              variant="flat"
+              color="#5E913B"
+              class="font-weight-bold"
+              style="width:100%; height:40px"
+            >
+              <div class="text-white">
+                회원가입
+              </div>
             </v-btn>
           </router-link>
         </v-col>
-        <v-col cols="2" v-if="getToken">
-
+        <v-col
+          v-if="getToken"
+          cols="2"
+        >
           <v-menu :close-on-content-click="false">
-            <template v-slot:activator="{ props }">
-              <v-row align="center" justify="end">
-                <v-btn v-bind="props" class="font-weight-bold mr-3" variant="tonal" color="green-lighten-1">
-                  <v-img :height="25" :width="25" src="../img/user.png" style="color:#2E471D"></v-img>
-                  <span style="color: #5E913B;" class="font-weight-bold">{{ userNickName }}</span>
+            <template #activator="{ props }">
+              <v-row
+                align="center"
+                justify="end"
+              >
+                <v-btn
+                  v-bind="props"
+                  class="font-weight-bold mr-3"
+                  variant="tonal"
+                  color="green-lighten-1"
+                >
+                  <v-img
+                    :height="25"
+                    :width="25"
+                    src="../img/user.png"
+                    style="color:#2E471D"
+                  />
+                  <span
+                    style="color: #5E913B;"
+                    class="font-weight-bold"
+                  >{{ userNickName }}</span>
                 </v-btn>
               </v-row>
             </template>
-            <v-card :height="showLocationAuthentication ? 400 : 275" :width="250">
+            <v-card
+              :height="showLocationAuthentication ? 400 : 275"
+              :width="250"
+            >
               <v-list>
                 <v-list-item style="text-align: center;">
-                  <v-row class="mt-1" style="cursor: pointer;">
-                    <v-col cols=1></v-col>
+                  <v-row
+                    class="mt-1"
+                    style="cursor: pointer;"
+                  >
+                    <v-col cols="1" />
                     <v-col cols="auto">
-                      <v-img :height="25" :width="25" src="../img/infomation.png" class=""></v-img>
+                      <v-img
+                        :height="25"
+                        :width="25"
+                        src="../img/infomation.png"
+                        class=""
+                      />
                     </v-col>
-                    <v-col cols="2"></v-col>
+                    <v-col cols="2" />
                     <v-col cols="auto">
-                      <v-list-item-title style="font-size:18px" class="font-weight-bold">내 정보</v-list-item-title>
+                      <v-list-item-title
+                        style="font-size:18px"
+                        class="font-weight-bold"
+                      >
+                        내 정보
+                      </v-list-item-title>
                     </v-col>
                   </v-row>
-                  <v-divider :thickness="1" class="border-opacity-25 my-5"></v-divider>
+                  <v-divider
+                    :thickness="1"
+                    class="border-opacity-25 my-5"
+                  />
                   <v-row style="cursor: pointer;">
-                    <v-col cols=1></v-col>
+                    <v-col cols="1" />
                     <v-col cols="auto">
-                      <v-img :height="25" :width="25" src="../img/chatting.png" class=""></v-img>
+                      <v-img
+                        :height="25"
+                        :width="25"
+                        src="../img/chatting.png"
+                        class=""
+                      />
                     </v-col>
-                    <v-col cols="2"></v-col>
+                    <v-col cols="2" />
                     <v-col cols="auto">
-                      <router-link :to="`/chatRooms`" style="text-decoration: none; color:black;">
-                        <v-list-item-title style="font-size:18px" class="font-weight-bold">채팅</v-list-item-title>
+                      <router-link
+                        :to="`/chatRooms`"
+                        style="text-decoration: none; color:black;"
+                      >
+                        <v-list-item-title
+                          style="font-size:18px"
+                          class="font-weight-bold"
+                        >
+                          채팅
+                        </v-list-item-title>
                       </router-link>
                     </v-col>
                   </v-row>
-                  <v-divider :thickness="1" class="border-opacity-25 my-5"></v-divider>
-                  <v-row @click="showLocationAuthentication = !showLocationAuthentication" style="cursor: pointer;"
-                    class="mb-3">
-                    <v-col cols=1></v-col>
+                  <v-divider
+                    :thickness="1"
+                    class="border-opacity-25 my-5"
+                  />
+                  <v-row
+                    style="cursor: pointer;"
+                    class="mb-3"
+                    @click="showLocationAuthentication = !showLocationAuthentication"
+                  >
+                    <v-col cols="1" />
                     <v-col cols="auto">
-                      <v-img :height="25" :width="25" src="../img/location.png" class=""></v-img>
+                      <v-img
+                        :height="25"
+                        :width="25"
+                        src="../img/location.png"
+                        class=""
+                      />
                     </v-col>
-                    <v-col cols="2"></v-col>
+                    <v-col cols="2" />
                     <v-col cols="auto">
-                      <v-list-item-title style="font-size:18px" class="font-weight-bold">위치인증</v-list-item-title>
+                      <v-list-item-title
+                        style="font-size:18px"
+                        class="font-weight-bold"
+                      >
+                        위치인증
+                      </v-list-item-title>
                     </v-col>
                   </v-row>
 
                   <v-row v-if="showLocationAuthentication">
                     <v-col cols="12">
                       <v-sheet>
-                        <div style="text-align:center; color: gray; font-size:14px" class="font-weight-bold mb-1">현재위치불러오기
+                        <div
+                          style="text-align:center; color: gray; font-size:14px"
+                          class="font-weight-bold mb-1"
+                        >
+                          현재위치불러오기
                         </div>
                         <v-row>
                           <v-col cols="auto">
-                            <v-switch class="ml-3" color="success" v-model="boolAuthentication"
-                              @change="toggleLocationAuthentication"></v-switch>
+                            <v-switch
+                              v-model="boolAuthentication"
+                              class="ml-3"
+                              color="success"
+                              @change="toggleLocationAuthentication"
+                            />
                           </v-col>
-                          <v-col cols="auto" align="end" justify="end">
+                          <v-col
+                            cols="auto"
+                            align="end"
+                            justify="end"
+                          >
                             <div v-if="$store.state.locationAuthentication">
-                              <div class="mt-4 font-weight-bold">현재위치 : <span style="color: #5E913B">{{
-                                $store.state.currentLocation }}</span></div>
+                              <div class="mt-4 font-weight-bold">
+                                현재위치 : <span style="color: #5E913B">{{
+                                  $store.state.currentLocation }}</span>
+                              </div>
                             </div>
                             <div v-else>
-                              <div class="mt-4 font-weight-bold">현재위치 : <span style="color: #5E913B">인증필요</span></div>
+                              <div class="mt-4 font-weight-bold">
+                                현재위치 : <span style="color: #5E913B">인증필요</span>
+                              </div>
                             </div>
                           </v-col>
                         </v-row>
@@ -184,16 +427,29 @@
                     </v-col>
                   </v-row>
 
-                  <v-divider :thickness="1" class="border-opacity-25 mb-5"></v-divider>
+                  <v-divider
+                    :thickness="1"
+                    class="border-opacity-25 mb-5"
+                  />
                   <v-row style="cursor: pointer;">
-                    <v-col cols=1></v-col>
+                    <v-col cols="1" />
                     <v-col cols="auto">
-                      <v-img :height="25" :width="25" src="../img/logout.png" class=""></v-img>
+                      <v-img
+                        :height="25"
+                        :width="25"
+                        src="../img/logout.png"
+                        class=""
+                      />
                     </v-col>
-                    <v-col cols="2"></v-col>
+                    <v-col cols="2" />
                     <v-col cols="auto">
-                      <v-list-item-title @click="handleLogout" style="font-size:18px"
-                        class="font-weight-bold">로그아웃</v-list-item-title>
+                      <v-list-item-title
+                        style="font-size:18px"
+                        class="font-weight-bold"
+                        @click="handleLogout"
+                      >
+                        로그아웃
+                      </v-list-item-title>
                     </v-col>
                   </v-row>
                 </v-list-item>
@@ -210,98 +466,163 @@
       <v-container>
         <v-row align="end">
           <v-col cols="11">
-            <div v-if="Board.independentPostType === null" class="mt-5">
+            <div
+              v-if="Board.independentPostType === null"
+              class="mt-5"
+            >
               <v-row>
                 <v-col cols="auto">
                   <router-link
                     :to="{ name: 'BoardView', params: { regionType: Board.regionTypeEn, regionPostType: Board.regionPostTypeEn } }"
-                    style="text-decoration: none; font-size:18px">
+                    style="text-decoration: none; font-size:18px"
+                  >
                     <div
+                      class="text-black"
                       @click="$store.state.boardCheck = regionsAPI.indexOf(Board.regionTypeEn), $store.state.categoryCheck = regionCategoryAPI.indexOf(Board.regionPostTypeEn)"
-                      class="text-black">지역 {{ Board.regionType }}</div>
+                    >
+                      지역 {{ Board.regionType }}
+                    </div>
                   </router-link>
                 </v-col>
                 <v-col cols="auto">
-                  <div class="mx-3">></div>
+                  <div class="mx-3">
+                    >
+                  </div>
                 </v-col>
                 <v-col cols="auto">
                   <router-link
                     :to="{ name: 'BoardView', params: { regionType: Board.regionTypeEn, regionPostType: Board.regionPostTypeEn } }"
-                    style="text-decoration: none; font-size:18px">
+                    style="text-decoration: none; font-size:18px"
+                  >
                     <div
+                      class="text-black"
                       @click="$store.state.boardCheck = regionsAPI.indexOf(Board.regionTypeEn), $store.state.categoryCheck = regionCategoryAPI.indexOf(Board.regionPostTypeEn)"
-                      class="text-black">{{ Board.regionPostType }}</div>
+                    >
+                      {{ Board.regionPostType }}
+                    </div>
                   </router-link>
                 </v-col>
               </v-row>
             </div>
-            <div v-else class="mt-5">
+            <div
+              v-else
+              class="mt-5"
+            >
               <v-row>
                 <v-col cols="auto">
                   <router-link
                     :to="{ name: 'IndependentView', params: { independentType: 'Board.independentPostTypeEn' } }"
-                    style="text-decoration: none; font-size:18px">
-                    <div @click="$store.state.independentCheck = independentsAPI.indexOf(Board.independentPostTypeEn)"
-                      class="text-black">자취 정보</div>
+                    style="text-decoration: none; font-size:18px"
+                  >
+                    <div
+                      class="text-black"
+                      @click="$store.state.independentCheck = independentsAPI.indexOf(Board.independentPostTypeEn)"
+                    >
+                      자취 정보
+                    </div>
                   </router-link>
                 </v-col>
                 <v-col cols="auto">
-                  <div class="mx-3">></div>
+                  <div class="mx-3">
+                    >
+                  </div>
                 </v-col>
                 <v-col cols="auto">
                   <router-link
                     :to="{ name: 'IndependentView', params: { independentType: 'Board.independentPostTypeEn' } }"
-                    style="text-decoration: none; font-size:18px">
-                    <div @click="$store.state.independentCheck = independentsAPI.indexOf(Board.independentPostTypeEn)"
-                      class="text-black">{{ Board.independentPostType }}</div>
+                    style="text-decoration: none; font-size:18px"
+                  >
+                    <div
+                      class="text-black"
+                      @click="$store.state.independentCheck = independentsAPI.indexOf(Board.independentPostTypeEn)"
+                    >
+                      {{ Board.independentPostType }}
+                    </div>
                   </router-link>
                 </v-col>
               </v-row>
             </div>
           </v-col>
-          <v-col cols="auto" align="end">
+          <v-col
+            cols="auto"
+            align="end"
+          >
             <v-row align="end">
               <v-snackbar :timeout="1000">
-                <template v-slot:activator="{ props }">
-                  <v-img v-bind="props" @click="copyUrl" class="ml-5" width="23" height="23" src="../img/link_copy.png"
-                    :style="{ cursor: 'pointer' }"></v-img>
+                <template #activator="{ props }">
+                  <v-img
+                    v-bind="props"
+                    class="ml-5"
+                    width="23"
+                    height="23"
+                    src="../img/link_copy.png"
+                    :style="{ cursor: 'pointer' }"
+                    @click="copyUrl"
+                  />
                 </template>
-                <div align="center">클립보드에 복사되었습니다.</div>
+                <div align="center">
+                  클립보드에 복사되었습니다.
+                </div>
               </v-snackbar>
 
-              <v-img class="ml-5" width="23" height="23" src="../img/scrap_default.png"
-                :style="{ cursor: 'pointer' }"></v-img>
+              <v-img
+                class="ml-5"
+                width="23"
+                height="23"
+                src="../img/scrap_default.png"
+                :style="{ cursor: 'pointer' }"
+              />
             </v-row>
           </v-col>
         </v-row>
         <v-row align="end">
           <v-col cols="10">
-            <div class="text-h4">{{ Board.title }}</div>
+            <div class="text-h4">
+              {{ Board.title }}
+            </div>
           </v-col>
           <v-col align="end">
-            <div>{{ $filter.formatYear(Board.createdDate) }}-{{ $filter.formatDate(Board.createdDate) }}
-              {{ $filter.formatTime(Board.createdDate) }}</div>
+            <div>
+              {{ $filter.formatYear(Board.createdDate) }}-{{ $filter.formatDate(Board.createdDate) }}
+              {{ $filter.formatTime(Board.createdDate) }}
+            </div>
           </v-col>
         </v-row>
-        <v-spacer></v-spacer>
+        <v-spacer />
         <v-row>
           <v-col cols="3">
             <div>작성자 : {{ Board.nickname }}</div>
           </v-col>
-          <v-col cols="9" align="end">
-            <div style="font-size:14px">조회수 : {{ Board.views }}&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;추천수 : {{
-              Board.recommendCount }}&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; 댓글수 : {{ Board.commentCount }}</div>
+          <v-col
+            cols="9"
+            align="end"
+          >
+            <div style="font-size:14px">
+              조회수 : {{ Board.views }}&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;추천수 : {{
+                Board.recommendCount }}&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; 댓글수 : {{ Board.commentCount }}
+            </div>
           </v-col>
         </v-row>
 
-        <v-divider :thickness="1" class="border-opacity-25 mt-7" length="1180"></v-divider>
+        <v-divider
+          :thickness="1"
+          class="border-opacity-25 mt-7"
+          length="1180"
+        />
 
         <v-row>
           <v-col>
-            <div v-for="(imageUrl, index) in imageUrls" :key="index">
+            <div
+              v-for="(imageUrl, index) in imageUrls"
+              :key="index"
+            >
               <v-row>
                 <v-col class="text-center">
-                  <img :src="imageUrl" alt="image" style="max-width: 100%;" />
+                  <img
+                    :src="imageUrl"
+                    alt="image"
+                    style="max-width: 100%;"
+                  >
                 </v-col>
               </v-row>
             </div>
@@ -309,54 +630,125 @@
         </v-row>
         <v-row>
           <v-col>
-            <div id="content">{{ Board.content }}</div>
+            <div id="content">
+              {{ Board.content }}
+            </div>
           </v-col>
         </v-row>
-        <v-row class="mt-15" align="center">
-          <v-col cols="auto" class="ml-3">
+        <v-row
+          class="mt-15"
+          align="center"
+        >
+          <v-col
+            cols="auto"
+            class="ml-3"
+          >
             <v-row>
-              <v-img @click="postRecommend" src="../img/post_recommend_default.png" width="30" height="30"
-                :style="{ cursor: 'pointer' }"></v-img>
-              <div class="ml-2 mt-1" style="font-size:18px;">{{ Board.recommendCount }}</div>
+              <v-img
+                src="../img/post_recommend_default.png"
+                width="30"
+                height="30"
+                :style="{ cursor: 'pointer' }"
+                @click="postRecommend"
+              />
+              <div
+                class="ml-2 mt-1"
+                style="font-size:18px;"
+              >
+                {{ Board.recommendCount }}
+              </div>
             </v-row>
           </v-col>
-          <v-col cols="auto" class="ml-5">
+          <v-col
+            cols="auto"
+            class="ml-5"
+          >
             <v-row>
-              <v-img src="../img/post_comment.png" width="30" height="30"></v-img>
-              <div class="ml-2 mt-1" style="font-size:18px;">{{ Board.commentCount }}</div>
+              <v-img
+                src="../img/post_comment.png"
+                width="30"
+                height="30"
+              />
+              <div
+                class="ml-2 mt-1"
+                style="font-size:18px;"
+              >
+                {{ Board.commentCount }}
+              </div>
             </v-row>
           </v-col>
-          <v-col cols="auto" class="ml-auto">
-            <v-img @click="report()" src="../img/post_report_default.png" width="35" height="35"
-              :style="{ cursor: 'pointer' }"></v-img>
+          <v-col
+            cols="auto"
+            class="ml-auto"
+          >
+            <v-img
+              src="../img/post_report_default.png"
+              width="35"
+              height="35"
+              :style="{ cursor: 'pointer' }"
+              @click="report()"
+            />
           </v-col>
         </v-row>
 
-        <v-divider :thickness="1" class="border-opacity-25 my-7" length="1180"></v-divider>
+        <v-divider
+          :thickness="1"
+          class="border-opacity-25 my-7"
+          length="1180"
+        />
 
         <v-row>
           <v-col>
-            <div style="font-size:16; font-weight:bold">댓글수 {{ Board.commentCount }}개</div>
+            <div style="font-size:16; font-weight:bold">
+              댓글수 {{ Board.commentCount }}개
+            </div>
           </v-col>
         </v-row>
 
         <v-row>
           <v-col cols="11">
-            <v-textarea rows="2" class="no-resize" v-model="comment" variant="outlined"
-              placeholder="댓글을 작성해 보세요."></v-textarea>
+            <v-textarea
+              v-model="inputComment"
+              rows="2"
+              class="no-resize"
+              variant="outlined"
+              placeholder="댓글을 작성해 보세요."
+            />
           </v-col>
           <v-col>
-            <v-btn variant="outlined" style="height:80px; width:75px; color:#ADADAD" @click="commentPost">등록</v-btn>
+            <v-btn
+              variant="outlined"
+              style="height:80px; width:75px; color:#ADADAD"
+              @click="commentPost"
+            >
+              등록
+            </v-btn>
           </v-col>
         </v-row>
 
-        <v-row v-if="userNickName === Board.nickname" class="mb-5">
+        <v-row
+          v-if="userNickName === Board.nickname"
+          class="mb-5"
+        >
           <v-col align="end">
-            <v-btn class="mr-5" variant="outlined" style="color:#ADADAD" @click="postDelete">
-              <div style="color:gray">삭제</div>
+            <v-btn
+              class="mr-5"
+              variant="outlined"
+              style="color:#ADADAD"
+              @click="postDelete"
+            >
+              <div style="color:gray">
+                삭제
+              </div>
             </v-btn>
-            <v-btn variant="outlined" style="color:#ADADAD" @click="postUpdate">
-              <div style="color:gray">수정</div>
+            <v-btn
+              variant="outlined"
+              style="color:#ADADAD"
+              @click="postUpdate"
+            >
+              <div style="color:gray">
+                수정
+              </div>
             </v-btn>
           </v-col>
         </v-row>
@@ -414,28 +806,64 @@
         </v-row> -->
 
         <div>
-          <div v-for="comment in Board.comments" :key="comment.commentId">
+          <div
+            v-for="comment in Board.comments"
+            :key="comment.commentId"
+          >
             <div v-if="comment.parentId === null">
-              <v-divider :thickness="1" class="border-opacity-25 my-3" length="1180"
-                style="border-color:lightslategray"></v-divider>
+              <v-divider
+                :thickness="1"
+                class="border-opacity-25 my-3"
+                length="1180"
+                style="border-color:lightslategray"
+              />
               <v-row>
-                <v-col cols="auto" style="color:gray">
-                  <router-link :to="`/chat/${comment.writerId}`" style="text-decoration: none; color:gray;">
+                <v-col
+                  cols="auto"
+                  style="color:gray"
+                >
+                  <router-link
+                    :to="`/chat/${comment.writerId}`"
+                    style="text-decoration: none; color:gray;"
+                  >
                     &nbsp;{{ comment.nickname }}
                   </router-link>
                 </v-col>
-                <v-col style="color:gray" cols="auto">
+                <v-col
+                  style="color:gray"
+                  cols="auto"
+                >
                   {{ $filter.formatDate(comment.createdDate) }} {{ $filter.formatTime(comment.createdDate) }}
                 </v-col>
-                <v-col style="color:gray" cols="auto">
-                  <div style="color:gray">추천수 {{ comment.recommendCount }}</div>
+                <v-col
+                  style="color:gray"
+                  cols="auto"
+                >
+                  <div style="color:gray">
+                    추천수 {{ comment.recommendCount }}
+                  </div>
                 </v-col>
-                <v-col cols="auto" class="ml-auto">
+                <v-col
+                  cols="auto"
+                  class="ml-auto"
+                >
                   <v-row>
-                    <v-img @click="commentRecommend(comment.commentId)" class="mt-3 mr-5"
-                      src="../img/comment_recommend.png" width="20" height="20" :style="{ cursor: 'pointer' }"></v-img>
-                    <v-img @click="toggleReply(comment.commentId)" class="mt-3 mr-5" src="../img/recomment.png" width="21"
-                      height="21" :style="{ cursor: 'pointer' }"></v-img>
+                    <v-img
+                      class="mt-3 mr-5"
+                      src="../img/comment_recommend.png"
+                      width="20"
+                      height="20"
+                      :style="{ cursor: 'pointer' }"
+                      @click="commentRecommend(comment.commentId)"
+                    />
+                    <v-img
+                      class="mt-3 mr-5"
+                      src="../img/recomment.png"
+                      width="21"
+                      height="21"
+                      :style="{ cursor: 'pointer' }"
+                      @click="toggleReply(comment.commentId)"
+                    />
                   </v-row>
                 </v-col>
               </v-row>
@@ -446,26 +874,60 @@
               </v-row>
             </div>
             <!-- 댓글에 대한 대댓글 표시 -->
-            <div v-for="reply in getReplies(comment.commentId)" :key="reply.commentId">
-              <v-sheet class="text-black" color="#F7F7F7" :width="1170">
-                <v-divider :thickness="1" class="border-opacity-25 my-3" length="1180"
-                  style="border-color:lightslategray;"></v-divider>
+            <div
+              v-for="reply in getReplies(comment.commentId)"
+              :key="reply.commentId"
+            >
+              <v-sheet
+                class="text-black"
+                color="#F7F7F7"
+                :width="1170"
+              >
+                <v-divider
+                  :thickness="1"
+                  class="border-opacity-25 my-3"
+                  length="1180"
+                  style="border-color:lightslategray;"
+                />
                 <v-row>
-                  <v-col cols="auto" style="color:gray">
-                    <router-link :to="`/chat/${reply.writerId}`" style="text-decoration: none; color:gray;">
+                  <v-col
+                    cols="auto"
+                    style="color:gray"
+                  >
+                    <router-link
+                      :to="`/chat/${reply.writerId}`"
+                      style="text-decoration: none; color:gray;"
+                    >
                       &emsp;&emsp;ㄴ{{ reply.nickname }}
                     </router-link>
                   </v-col>
-                  <v-col style="color:gray" cols="auto">
+                  <v-col
+                    style="color:gray"
+                    cols="auto"
+                  >
                     {{ $filter.formatDate(reply.createdDate) }} {{ $filter.formatTime(reply.createdDate) }}
                   </v-col>
-                  <v-col style="color:gray" cols="auto">
-                    <div style="color:gray">추천수 {{ reply.recommendCount }}</div>
+                  <v-col
+                    style="color:gray"
+                    cols="auto"
+                  >
+                    <div style="color:gray">
+                      추천수 {{ reply.recommendCount }}
+                    </div>
                   </v-col>
-                  <v-col cols="auto" class="ml-auto">
+                  <v-col
+                    cols="auto"
+                    class="ml-auto"
+                  >
                     <v-row>
-                      <v-img class="mt-3 mr-5" src="../img/comment_recommend.png" width="20" height="20"
-                        @click="commentRecommend(reply.commentId)" :style="{ cursor: 'pointer' }"></v-img>
+                      <v-img
+                        class="mt-3 mr-5"
+                        src="../img/comment_recommend.png"
+                        width="20"
+                        height="20"
+                        :style="{ cursor: 'pointer' }"
+                        @click="commentRecommend(reply.commentId)"
+                      />
                     </v-row>
                   </v-col>
                 </v-row>
@@ -492,16 +954,25 @@
               <div>
                 <v-row class="mt-10">
                   <v-col cols="11">
-                    <v-textarea v-model="recomment" rows="1" class="no-resize" variant="outlined"
-                      placeholder="대댓글을 작성해 보세요."></v-textarea>
+                    <v-textarea
+                      v-model="recomment"
+                      rows="1"
+                      class="no-resize"
+                      variant="outlined"
+                      placeholder="대댓글을 작성해 보세요."
+                    />
                   </v-col>
                   <v-col>
-                    <v-btn variant="outlined" style="height:57px; width:75px; color:#ADADAD"
-                      @click="recommentPost(comment)">등록</v-btn>
+                    <v-btn
+                      variant="outlined"
+                      style="height:57px; width:75px; color:#ADADAD"
+                      @click="recommentPost(comment)"
+                    >
+                      등록
+                    </v-btn>
                   </v-col>
                 </v-row>
               </div>
-      
             </div>
           </div>
         </div>
@@ -510,13 +981,23 @@
   </v-app>
 
   <!--푸터-->
-  <v-footer border class="mt-10">
+  <v-footer
+    border
+    class="mt-10"
+  >
     <v-container>
       <v-row>
-        <v-col cols="3"></v-col>
+        <v-col cols="3" />
         <v-col cols="6">
-          <v-sheet height="80" width="650" align="center">
-            <v-row justify="center" class="text-grey-lighten-1">
+          <v-sheet
+            height="80"
+            width="650"
+            align="center"
+          >
+            <v-row
+              justify="center"
+              class="text-grey-lighten-1"
+            >
               <v-col cols="auto">
                 <p>서비스 소개</p>
               </v-col>
@@ -527,7 +1008,11 @@
                 <p>이용약관</p>
               </v-col>
             </v-row>
-            <v-row class="text-grey-lighten-2" style="font-size:12px" justify="center">
+            <v-row
+              class="text-grey-lighten-2"
+              style="font-size:12px"
+              justify="center"
+            >
               <v-col cols="auto">
                 <p>[팀] 인디펜더</p>
               </v-col>
@@ -540,7 +1025,7 @@
             </v-row>
           </v-sheet>
         </v-col>
-        <v-col cols="3"> </v-col>
+        <v-col cols="3" />
       </v-row>
     </v-container>
   </v-footer>
@@ -576,65 +1061,83 @@ export default {
       searchText: '', // 검색어를 저장하는 데이터 속성
       error: false, // 로딩 상태를 나타내는 데이터 속성
 
-      comment: "",
+      inputComment: "",
       recomment: ""
     }
   },
+  computed: {
+    ...mapGetters(['getToken']),
+  },
+  mounted() {
+    this.read();
+    this.files();
+    
+    if (this.$store.state.locationAuthentication === true) {
+      this.getAddr();
+      this.boolAuthentication = true
+    }
+    else
+      this.boolAuthentication = false
+
+    if (this.getToken)
+      this.loginToken()
+
+  },
   methods: {
     files() {
-    const path = this.$route.path;
-    const pathSegments = path.split('/');
-    const postId = parseInt(pathSegments[2]);
+      const path = this.$route.path;
+      const pathSegments = path.split('/');
+      const postId = parseInt(pathSegments[2]);
 
-    const url = `/api/files/${postId}`;
+      const url = `/api/files/${postId}`;
 
-    this.$axios.get(url, {  
-      headers: {
-        Authorization: this.$store.state.token, // 헤더에 토큰 추가
-      },
-    })
-      .then((res) => {
-
-        const base64ImageDataArray = res.data.files;
-        const imageUrls = [];
-
-        base64ImageDataArray.forEach((base64ImageData) => {
-          const byteCharacters = atob(base64ImageData);
-          const byteNumbers = new Array(byteCharacters.length);
-          for (let i = 0; i < byteCharacters.length; i++) {
-            byteNumbers[i] = byteCharacters.charCodeAt(i);
-          }
-          const byteArray = new Uint8Array(byteNumbers);
-          const blob = new Blob([byteArray], { type: 'image/png' });
-
-          const imageUrl = URL.createObjectURL(blob);
-          imageUrls.push(imageUrl);
-        });
-
-        this.imageUrls = imageUrls;
+      this.$axios.get(url, {  
+        headers: {
+          Authorization: this.$store.state.token, // 헤더에 토큰 추가
+        },
       })
-      .catch(err => console.error(err))
-  },
-  read() {
-    const path = this.$route.path;
-    const pathSegments = path.split('/');
-    const postId = parseInt(pathSegments[2]);
+        .then((res) => {
 
-    const url = `/api/posts/${postId}`;
-    //const url = 'https://ba9fe6f7-8331-4cd6-bd3e-1323d53d8567.mock.pstmn.io/post'
+          const base64ImageDataArray = res.data.files;
+          const imageUrls = [];
 
-    this.$axios.get(url, {
-      headers: {
-        Authorization: this.$store.state.token, // 헤더에 토큰 추가
-      },
-    })
-      .then((res) => {
-        this.Board = res.data.data
-        this.bestComment = res.data.data.bestComment
-        console.log(res.data)
+          base64ImageDataArray.forEach((base64ImageData) => {
+            const byteCharacters = atob(base64ImageData);
+            const byteNumbers = new Array(byteCharacters.length);
+            for (let i = 0; i < byteCharacters.length; i++) {
+              byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            const blob = new Blob([byteArray], { type: 'image/png' });
+
+            const imageUrl = URL.createObjectURL(blob);
+            imageUrls.push(imageUrl);
+          });
+
+          this.imageUrls = imageUrls;
+        })
+        .catch(err => console.error(err))
+    },
+    read() {
+      const path = this.$route.path;
+      const pathSegments = path.split('/');
+      const postId = parseInt(pathSegments[2]);
+
+      const url = `/api/posts/${postId}`;
+      //const url = 'https://ba9fe6f7-8331-4cd6-bd3e-1323d53d8567.mock.pstmn.io/post'
+
+      this.$axios.get(url, {
+        headers: {
+          Authorization: this.$store.state.token, // 헤더에 토큰 추가
+        },
       })
-      .catch(err => console.error(err))
-  },
+        .then((res) => {
+          this.Board = res.data.data
+          this.bestComment = res.data.data.bestComment
+          console.log(res.data)
+        })
+        .catch(err => console.error(err))
+    },
     postDelete() {
       const path = this.$route.path;
       const pathSegments = path.split('/');
@@ -662,7 +1165,7 @@ export default {
       const path = this.$route.path;
       const pathSegments = path.split('/');
       const postId = parseInt(pathSegments[2]);
-  this.$router.push({ path: '/PostWrite', query: { data: JSON.stringify(this.Board), postId: postId }});
+      this.$router.push({ path: '/PostWrite', query: { data: JSON.stringify(this.Board), postId: postId }});
     },
     commentPost() {
       const path = this.$route.path;
@@ -671,7 +1174,7 @@ export default {
 
       const url = `/api/comments/parent/new`;
 
-      this.$axios.post(url, { postId: postId, content: this.comment }, {
+      this.$axios.post(url, { postId: postId, content: this.inputComment }, {
         headers: {
           Authorization: this.$store.state.token, // 헤더에 토큰 추가
         },
@@ -799,10 +1302,10 @@ export default {
       if (this.$store.state.locationAuthentication === true)
 
         this.$axios.post("/api/members/region", { region: this.$store.state.currentLocation }, {
-        headers: {
-          Authorization: this.$store.state.token, // 헤더에 토큰 추가
-        },
-      });
+          headers: {
+            Authorization: this.$store.state.token, // 헤더에 토큰 추가
+          },
+        });
     },
     totalSearch() {
       if (this.searchText !== '') {
@@ -851,25 +1354,7 @@ export default {
       const claims = JSON.parse(decodedPayload);
       this.userNickName = claims.nickname;
     },
-  },
-  mounted() {
-    this.read();
-    this.files();
-    
-    if (this.$store.state.locationAuthentication === true) {
-      this.getAddr();
-      this.boolAuthentication = true
-    }
-    else
-      this.boolAuthentication = false
-
-    if (this.getToken)
-      this.loginToken()
-
-  },
-  computed: {
-    ...mapGetters(['getToken']),
-  },
+  }
 }   
 </script>
 

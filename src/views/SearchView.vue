@@ -1,87 +1,219 @@
 <template>
   <!--시스템 바-->
-  <v-app-bar height="80" :elevation="1">
+  <v-app-bar
+    height="80"
+    :elevation="1"
+  >
     <v-container>
       <v-row align="center">
         <v-col cols="2">
           <router-link to="/">
-            <v-img src="../img/logo.png" :style="{ 'max-height': '100px' }"></v-img>
+            <v-img
+              src="../img/logo.png"
+              :style="{ 'max-height': '100px' }"
+            />
           </router-link>
         </v-col>
         <v-col cols="5">
-          <v-tabs color="#5E913B" v-model="active_tab">
-            <router-link to="/" style="text-decoration: none; color:black;">
+          <v-tabs
+            v-model="active_tab"
+            color="#5E913B"
+          >
+            <router-link
+              to="/"
+              style="text-decoration: none; color:black;"
+            >
               <v-tab @click="$store.state.myGlobalVariable = 0">
-                <p class="font-weight-bold text-h6 mx-4">{{ link[0] }}</p>
+                <p class="font-weight-bold text-h6 mx-4">
+                  {{ link[0] }}
+                </p>
               </v-tab>
             </router-link>
-            <router-link to="/board/ALL/FREE" style="text-decoration: none; color:black;"
-              @click="$store.state.boardCheck = 0">
+            <router-link
+              to="/board/ALL/FREE"
+              style="text-decoration: none; color:black;"
+              @click="$store.state.boardCheck = 0"
+            >
               <v-menu open-on-hover>
-                <template v-slot:activator="{ props }">
+                <template #activator="{ props }">
                   <v-tab v-bind="props">
-                    <p class="font-weight-bold text-h6 mx-4">{{ link[1] }}</p>
+                    <p class="font-weight-bold text-h6 mx-4">
+                      {{ link[1] }}
+                    </p>
                   </v-tab>
                 </template>
                 <v-list>
                   <v-list-item align="center">
-                    <router-link to="/board/ALL/FREE" style="text-decoration: none; color:black;" @click="region_all">
-                      <v-list-item-title class="my-2" @click="$store.state.boardCheck = 0">자유</v-list-item-title>
+                    <router-link
+                      to="/board/ALL/FREE"
+                      style="text-decoration: none; color:black;"
+                      @click="region_all"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.boardCheck = 0"
+                      >
+                        자유
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/board/SEOUL/TALK" style="text-decoration: none; color:black;" @click="region_seoul">
-                      <v-list-item-title class="my-2" @click="$store.state.boardCheck = 1">서울</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/board/SEOUL/TALK"
+                      style="text-decoration: none; color:black;"
+                      @click="region_seoul"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.boardCheck = 1"
+                      >
+                        서울
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/board/PUSAN/TALK" style="text-decoration: none; color:black;" @click="region_busan">
-                      <v-list-item-title class="my-2" @click="$store.state.boardCheck = 2">부산</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/board/PUSAN/TALK"
+                      style="text-decoration: none; color:black;"
+                      @click="region_busan"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.boardCheck = 2"
+                      >
+                        부산
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/board/ULSAN/TALK" style="text-decoration: none; color:black;" @click="region_ulsan">
-                      <v-list-item-title class="my-2" @click="$store.state.boardCheck = 3">울산</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/board/ULSAN/TALK"
+                      style="text-decoration: none; color:black;"
+                      @click="region_ulsan"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.boardCheck = 3"
+                      >
+                        울산
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/board/KEYNONGNAM/TALK" style="text-decoration: none; color:black;"
-                      @click="region_kyeongnam">
-                      <v-list-item-title class="my-2" @click="$store.state.boardCheck = 4">경남</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/board/KEYNONGNAM/TALK"
+                      style="text-decoration: none; color:black;"
+                      @click="region_kyeongnam"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.boardCheck = 4"
+                      >
+                        경남
+                      </v-list-item-title>
                     </router-link>
                   </v-list-item>
                 </v-list>
               </v-menu>
             </router-link>
-            <router-link to="/independent/CLEAN" style="text-decoration: none; color:black;"
-              @click="$store.state.independentCheck = 0">
+            <router-link
+              to="/independent/CLEAN"
+              style="text-decoration: none; color:black;"
+              @click="$store.state.independentCheck = 0"
+            >
               <v-menu open-on-hover>
-                <template v-slot:activator="{ props }">
+                <template #activator="{ props }">
                   <v-tab v-bind="props">
-                    <p class="font-weight-bold text-h6 mx-4">{{ link[2] }}</p>
+                    <p class="font-weight-bold text-h6 mx-4">
+                      {{ link[2] }}
+                    </p>
                   </v-tab>
                 </template>
                 <v-list>
                   <v-list-item align="center">
-                    <router-link to="/independent/CLEAN" style="text-decoration: none; color:black;"
-                      @click="independent_clean">
-                      <v-list-item-title class="my-2" @click="$store.state.independentCheck = 0">청소</v-list-item-title>
+                    <router-link
+                      to="/independent/CLEAN"
+                      style="text-decoration: none; color:black;"
+                      @click="independent_clean"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.independentCheck = 0"
+                      >
+                        청소
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/independent/WASH" style="text-decoration: none; color:black;"
-                      @click="independent_wash">
-                      <v-list-item-title class="my-2" @click="$store.state.independentCheck = 1">세탁</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/independent/WASH"
+                      style="text-decoration: none; color:black;"
+                      @click="independent_wash"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.independentCheck = 1"
+                      >
+                        세탁
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/independent/COOK" style="text-decoration: none; color:black;"
-                      @click="independent_cook">
-                      <v-list-item-title class="my-2" @click="$store.state.independentCheck = 2">요리</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/independent/COOK"
+                      style="text-decoration: none; color:black;"
+                      @click="independent_cook"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.independentCheck = 2"
+                      >
+                        요리
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/independent/HEALTH" style="text-decoration: none; color:black;"
-                      @click="independent_health">
-                      <v-list-item-title class="my-2" @click="$store.state.independentCheck = 3">건강</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/independent/HEALTH"
+                      style="text-decoration: none; color:black;"
+                      @click="independent_health"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.independentCheck = 3"
+                      >
+                        건강
+                      </v-list-item-title>
                     </router-link>
-                    <v-divider :thickness="1" class="border-opacity-25 mb-2"></v-divider>
-                    <router-link to="/independent/ETC" style="text-decoration: none; color:black;"
-                      @click="independent_etc">
-                      <v-list-item-title class="my-2" @click="$store.state.independentCheck = 4">기타</v-list-item-title>
+                    <v-divider
+                      :thickness="1"
+                      class="border-opacity-25 mb-2"
+                    />
+                    <router-link
+                      to="/independent/ETC"
+                      style="text-decoration: none; color:black;"
+                      @click="independent_etc"
+                    >
+                      <v-list-item-title
+                        class="my-2"
+                        @click="$store.state.independentCheck = 4"
+                      >
+                        기타
+                      </v-list-item-title>
                     </router-link>
                   </v-list-item>
                 </v-list>
@@ -91,92 +223,203 @@
         </v-col>
         <v-col cols="3">
           <v-card-text>
-            <v-text-field v-model="searchText" :loading="error" density="compact" variant="outlined" label="통합검색"
-              append-inner-icon="mdi-magnify" single-line hide-details @click:append-inner="totalSearch"
-              @keydown.enter="totalSearch"></v-text-field>
+            <v-text-field
+              v-model="searchText"
+              :loading="error"
+              density="compact"
+              variant="outlined"
+              label="통합검색"
+              append-inner-icon="mdi-magnify"
+              single-line
+              hide-details
+              @click:append-inner="totalSearch"
+              @keydown.enter="totalSearch"
+            />
           </v-card-text>
         </v-col>
-        <v-col cols="1" v-if="!getToken">
+        <v-col
+          v-if="!getToken"
+          cols="1"
+        >
           <router-link to="/login">
-            <v-btn variant="flat" color="#5E913B" class="font-weight-bold" style="width:100%; height:40px">
-              <div class="text-white">로그인</div>
+            <v-btn
+              variant="flat"
+              color="#5E913B"
+              class="font-weight-bold"
+              style="width:100%; height:40px"
+            >
+              <div class="text-white">
+                로그인
+              </div>
             </v-btn>
           </router-link>
         </v-col>
-        <v-col cols="1" v-if="!getToken">
+        <v-col
+          v-if="!getToken"
+          cols="1"
+        >
           <router-link to="/signup">
-            <v-btn variant="flat" color="#5E913B" class="font-weight-bold" style="width:100%; height:40px">
-              <div class="text-white">회원가입</div>
+            <v-btn
+              variant="flat"
+              color="#5E913B"
+              class="font-weight-bold"
+              style="width:100%; height:40px"
+            >
+              <div class="text-white">
+                회원가입
+              </div>
             </v-btn>
           </router-link>
         </v-col>
-        <v-col cols="2" v-if="getToken">
-
+        <v-col
+          v-if="getToken"
+          cols="2"
+        >
           <v-menu :close-on-content-click="false">
-            <template v-slot:activator="{ props }">
-              <v-row align="center" justify="end">
-                <v-btn v-bind="props" class="font-weight-bold mr-3" variant="tonal" color="green-lighten-1">
-                  <v-img :height="25" :width="25" src="../img/user.png" style="color:#2E471D"></v-img>
-                  <span style="color: #5E913B;" class="font-weight-bold">{{ userNickName }}</span>
+            <template #activator="{ props }">
+              <v-row
+                align="center"
+                justify="end"
+              >
+                <v-btn
+                  v-bind="props"
+                  class="font-weight-bold mr-3"
+                  variant="tonal"
+                  color="green-lighten-1"
+                >
+                  <v-img
+                    :height="25"
+                    :width="25"
+                    src="../img/user.png"
+                    style="color:#2E471D"
+                  />
+                  <span
+                    style="color: #5E913B;"
+                    class="font-weight-bold"
+                  >{{ userNickName }}</span>
                 </v-btn>
               </v-row>
             </template>
-            <v-card :height="showLocationAuthentication ? 400 : 275" :width="250">
+            <v-card
+              :height="showLocationAuthentication ? 400 : 275"
+              :width="250"
+            >
               <v-list>
                 <v-list-item style="text-align: center;">
-                  <v-row class="mt-1" style="cursor: pointer;">
-                    <v-col cols=1></v-col>
+                  <v-row
+                    class="mt-1"
+                    style="cursor: pointer;"
+                  >
+                    <v-col cols="1" />
                     <v-col cols="auto">
-                      <v-img :height="25" :width="25" src="../img/infomation.png" class=""></v-img>
+                      <v-img
+                        :height="25"
+                        :width="25"
+                        src="../img/infomation.png"
+                        class=""
+                      />
                     </v-col>
-                    <v-col cols="2"></v-col>
+                    <v-col cols="2" />
                     <v-col cols="auto">
-                      <v-list-item-title style="font-size:18px" class="font-weight-bold">내 정보</v-list-item-title>
+                      <v-list-item-title
+                        style="font-size:18px"
+                        class="font-weight-bold"
+                      >
+                        내 정보
+                      </v-list-item-title>
                     </v-col>
                   </v-row>
-                  <v-divider :thickness="1" class="border-opacity-25 my-5"></v-divider>
+                  <v-divider
+                    :thickness="1"
+                    class="border-opacity-25 my-5"
+                  />
                   <v-row style="cursor: pointer;">
-                    <v-col cols=1></v-col>
+                    <v-col cols="1" />
                     <v-col cols="auto">
-                      <v-img :height="25" :width="25" src="../img/chatting.png" class=""></v-img>
+                      <v-img
+                        :height="25"
+                        :width="25"
+                        src="../img/chatting.png"
+                        class=""
+                      />
                     </v-col>
-                    <v-col cols="2"></v-col>
+                    <v-col cols="2" />
                     <v-col cols="auto">
-                      <router-link :to="`/chatRooms`" style="text-decoration: none; color:black;">
-                        <v-list-item-title style="font-size:18px" class="font-weight-bold">채팅</v-list-item-title>
+                      <router-link
+                        :to="`/chatRooms`"
+                        style="text-decoration: none; color:black;"
+                      >
+                        <v-list-item-title
+                          style="font-size:18px"
+                          class="font-weight-bold"
+                        >
+                          채팅
+                        </v-list-item-title>
                       </router-link>
                     </v-col>
                   </v-row>
-                  <v-divider :thickness="1" class="border-opacity-25 my-5"></v-divider>
-                  <v-row @click="showLocationAuthentication = !showLocationAuthentication" style="cursor: pointer;"
-                    class="mb-3">
-                    <v-col cols=1></v-col>
+                  <v-divider
+                    :thickness="1"
+                    class="border-opacity-25 my-5"
+                  />
+                  <v-row
+                    style="cursor: pointer;"
+                    class="mb-3"
+                    @click="showLocationAuthentication = !showLocationAuthentication"
+                  >
+                    <v-col cols="1" />
                     <v-col cols="auto">
-                      <v-img :height="25" :width="25" src="../img/location.png" class=""></v-img>
+                      <v-img
+                        :height="25"
+                        :width="25"
+                        src="../img/location.png"
+                        class=""
+                      />
                     </v-col>
-                    <v-col cols="2"></v-col>
+                    <v-col cols="2" />
                     <v-col cols="auto">
-                      <v-list-item-title style="font-size:18px" class="font-weight-bold">위치인증</v-list-item-title>
+                      <v-list-item-title
+                        style="font-size:18px"
+                        class="font-weight-bold"
+                      >
+                        위치인증
+                      </v-list-item-title>
                     </v-col>
                   </v-row>
 
                   <v-row v-if="showLocationAuthentication">
                     <v-col cols="12">
                       <v-sheet>
-                        <div style="text-align:center; color: gray; font-size:14px" class="font-weight-bold mb-1">현재위치불러오기
+                        <div
+                          style="text-align:center; color: gray; font-size:14px"
+                          class="font-weight-bold mb-1"
+                        >
+                          현재위치불러오기
                         </div>
                         <v-row>
                           <v-col cols="auto">
-                            <v-switch class="ml-3" color="success" v-model="boolAuthentication"
-                              @change="toggleLocationAuthentication"></v-switch>
+                            <v-switch
+                              v-model="boolAuthentication"
+                              class="ml-3"
+                              color="success"
+                              @change="toggleLocationAuthentication"
+                            />
                           </v-col>
-                          <v-col cols="auto" align="end" justify="end">
+                          <v-col
+                            cols="auto"
+                            align="end"
+                            justify="end"
+                          >
                             <div v-if="$store.state.locationAuthentication">
-                              <div class="mt-4 font-weight-bold">현재위치 : <span style="color: #5E913B">{{
-                                $store.state.currentLocation }}</span></div>
+                              <div class="mt-4 font-weight-bold">
+                                현재위치 : <span style="color: #5E913B">{{
+                                  $store.state.currentLocation }}</span>
+                              </div>
                             </div>
                             <div v-else>
-                              <div class="mt-4 font-weight-bold">현재위치 : <span style="color: #5E913B">인증필요</span></div>
+                              <div class="mt-4 font-weight-bold">
+                                현재위치 : <span style="color: #5E913B">인증필요</span>
+                              </div>
                             </div>
                           </v-col>
                         </v-row>
@@ -184,16 +427,29 @@
                     </v-col>
                   </v-row>
 
-                  <v-divider :thickness="1" class="border-opacity-25 mb-5"></v-divider>
+                  <v-divider
+                    :thickness="1"
+                    class="border-opacity-25 mb-5"
+                  />
                   <v-row style="cursor: pointer;">
-                    <v-col cols=1></v-col>
+                    <v-col cols="1" />
                     <v-col cols="auto">
-                      <v-img :height="25" :width="25" src="../img/logout.png" class=""></v-img>
+                      <v-img
+                        :height="25"
+                        :width="25"
+                        src="../img/logout.png"
+                        class=""
+                      />
                     </v-col>
-                    <v-col cols="2"></v-col>
+                    <v-col cols="2" />
                     <v-col cols="auto">
-                      <v-list-item-title @click="handleLogout" style="font-size:18px"
-                        class="font-weight-bold">로그아웃</v-list-item-title>
+                      <v-list-item-title
+                        style="font-size:18px"
+                        class="font-weight-bold"
+                        @click="handleLogout"
+                      >
+                        로그아웃
+                      </v-list-item-title>
                     </v-col>
                   </v-row>
                 </v-list-item>
@@ -209,98 +465,189 @@
     <v-main>
       <v-container>
         <v-row class="mt-3">
-
           <v-col cols="auto">
-            <v-img :width="35" height="45" src="../img/search.png"></v-img>
+            <v-img
+              :width="35"
+              height="45"
+              src="../img/search.png"
+            />
           </v-col>
           <v-col cols="auto">
-            <h2 class="font-weight-bold mt-2" style="color:#5E913B">{{ searchText }}의 검색결과</h2>
+            <h2
+              class="font-weight-bold mt-2"
+              style="color:#5E913B"
+            >
+              {{ searchText }}의 검색결과
+            </h2>
           </v-col>
-          <v-col align="end" justify="end">
-            <p class="font-weight-bold mt-6">검색 수 : {{ count }}</p>
+          <v-col
+            align="end"
+            justify="end"
+          >
+            <p class="font-weight-bold mt-6">
+              검색 수 : {{ count }}
+            </p>
           </v-col>
         </v-row>
         <v-row>
           <v-col>
-            <v-divider :thickness="1" class="border-opacity-25"></v-divider>
+            <v-divider
+              :thickness="1"
+              class="border-opacity-25"
+            />
           </v-col>
         </v-row>
-        <v-sheet class="font-weight-bold" align="center" justify="center">
+        <v-sheet
+          class="font-weight-bold"
+          align="center"
+          justify="center"
+        >
           <v-row>
-            <v-col cols="1">게시판</v-col>
-            <v-col cols="6">제목</v-col>
-            <v-col cols="2">작성자</v-col>
+            <v-col cols="1">
+              게시판
+            </v-col>
+            <v-col cols="6">
+              제목
+            </v-col>
+            <v-col cols="2">
+              작성자
+            </v-col>
             <v-col cols="3">
               <v-row>
-                <v-col cols="4">댓글수</v-col>
-                <v-col cols="4">추천수</v-col>
-                <v-col cols="4">조회수</v-col>
+                <v-col cols="4">
+                  댓글수
+                </v-col>
+                <v-col cols="4">
+                  추천수
+                </v-col>
+                <v-col cols="4">
+                  조회수
+                </v-col>
               </v-row>
             </v-col>
           </v-row>
         </v-sheet>
         <v-row>
           <v-col>
-            <v-divider :thickness="1" class="border-opacity-25"></v-divider>
+            <v-divider
+              :thickness="1"
+              class="border-opacity-25"
+            />
           </v-col>
         </v-row>
         <v-row>
-          <v-col v-for="item in searchBoard" :key="item" cols="12">
+          <v-col
+            v-for="item in searchBoard"
+            :key="item"
+            cols="12"
+          >
             <v-row>
-              <v-col cols="1" align="center" justify="center">
+              <v-col
+                cols="1"
+                align="center"
+                justify="center"
+              >
                 <div v-if="item.independentPostType === null">
                   <router-link
                     :to="{ name: 'BoardView', params: { regionType: item.regionTypeEn, regionPostType: item.regionPostTypeEn } }"
-                    style="text-decoration: none;">
-                    <p @click="$store.state.boardCheck = regionsAPI.indexOf(item.regionTypeEn), $store.state.categoryCheck = regionCategoryAPI.indexOf(item.regionPostTypeEn)"
-                      class="text-grey-darken-1">{{ item.regionType }}·{{ item.regionPostType }}</p>
+                    style="text-decoration: none;"
+                  >
+                    <p
+                      class="text-grey-darken-1"
+                      @click="$store.state.boardCheck = regionsAPI.indexOf(item.regionTypeEn), $store.state.categoryCheck = regionCategoryAPI.indexOf(item.regionPostTypeEn)"
+                    >
+                      {{ item.regionType }}·{{ item.regionPostType }}
+                    </p>
                   </router-link>
                 </div>
                 <div v-else>
-                  <router-link :to="{ name: 'IndependentView', params: { independentType: item.independentPostTypeEn } }"
-                    style="text-decoration: none;">
-                    <p @click="$store.state.independentCheck = independentsAPI.indexOf(item.independentPostTypeEn)"
-                      class="text-grey-darken-1">자취·{{ item.independentPostType }}</p>
+                  <router-link
+                    :to="{ name: 'IndependentView', params: { independentType: item.independentPostTypeEn } }"
+                    style="text-decoration: none;"
+                  >
+                    <p
+                      class="text-grey-darken-1"
+                      @click="$store.state.independentCheck = independentsAPI.indexOf(item.independentPostTypeEn)"
+                    >
+                      자취·{{ item.independentPostType }}
+                    </p>
                   </router-link>
                 </div>
               </v-col>
               <v-col cols="6">
                 <div v-if="item.title.length <= 23">
-                  <v-img style="float:left" v-if="item.picture === true" :width="15" src="../img/imagePlaceHolder.png"
-                    class="my-1 mr-1"></v-img>
-                  <router-link :to="{ name: 'PostView', params: { postId: item.postId } }"
-                    style="text-decoration: none; color:black;">
+                  <v-img
+                    v-if="item.picture === true"
+                    style="float:left"
+                    :width="15"
+                    src="../img/imagePlaceHolder.png"
+                    class="my-1 mr-1"
+                  />
+                  <router-link
+                    :to="{ name: 'PostView', params: { postId: item.postId } }"
+                    style="text-decoration: none; color:black;"
+                  >
                     {{ item.title }}
                   </router-link>
                 </div>
                 <div v-else>
-                  <v-img style="float:left" v-if="item.picture === true" :width="15" src="../img/imagePlaceHolder.png"
-                    class="my-1 mr-1"></v-img>
-                  <router-link :to="{ name: 'PostView', params: { postId: item.postId } }"
-                    style="text-decoration: none; color:black;">
+                  <v-img
+                    v-if="item.picture === true"
+                    style="float:left"
+                    :width="15"
+                    src="../img/imagePlaceHolder.png"
+                    class="my-1 mr-1"
+                  />
+                  <router-link
+                    :to="{ name: 'PostView', params: { postId: item.postId } }"
+                    style="text-decoration: none; color:black;"
+                  >
                     <p>{{ item.title.substr(0, 23) }}...</p>
                   </router-link>
                 </div>
               </v-col>
-              <v-col cols="2">{{ item.nickname }}</v-col>
+              <v-col cols="2">
+                {{ item.nickname }}
+              </v-col>
               <v-col cols="3">
                 <v-row>
                   <v-col cols="4">
                     <div>
-                      <v-img style="float:left;" :width="15" src="../img/commentIcon.png" class="my-1 mx-1"></v-img>
-                      <p class="text-grey-darken-1 mx-1">{{ item.commentCount }}</p>
+                      <v-img
+                        style="float:left;"
+                        :width="15"
+                        src="../img/commentIcon.png"
+                        class="my-1 mx-1"
+                      />
+                      <p class="text-grey-darken-1 mx-1">
+                        {{ item.commentCount }}
+                      </p>
                     </div>
                   </v-col>
                   <v-col cols="4">
                     <div>
-                      <v-img style="float:left" :width="15" src="../img/recommendIcon.png" class="my-1 mx-1"></v-img>
-                      <p class="text-grey-darken-1 mx-1">{{ item.recommendCount }}</p>
+                      <v-img
+                        style="float:left"
+                        :width="15"
+                        src="../img/recommendIcon.png"
+                        class="my-1 mx-1"
+                      />
+                      <p class="text-grey-darken-1 mx-1">
+                        {{ item.recommendCount }}
+                      </p>
                     </div>
                   </v-col>
                   <v-col cols="4">
                     <div>
-                      <v-img style="float:left" :width="15" src="../img/viewIcon.png" class="my-1 mx-1"></v-img>
-                      <p class="text-grey-darken-1 mx-1">{{ item.views }}</p>
+                      <v-img
+                        style="float:left"
+                        :width="15"
+                        src="../img/viewIcon.png"
+                        class="my-1 mx-1"
+                      />
+                      <p class="text-grey-darken-1 mx-1">
+                        {{ item.views }}
+                      </p>
                     </div>
                   </v-col>
                 </v-row>
@@ -308,7 +655,10 @@
             </v-row>
             <v-row v-if="!$last">
               <v-col>
-                <v-divider :thickness="1" class="border-opacity-25"></v-divider>
+                <v-divider
+                  :thickness="1"
+                  class="border-opacity-25"
+                />
               </v-col>
             </v-row>
           </v-col>
@@ -316,17 +666,38 @@
 
         <v-row justify="center">
           <div v-if="totalPage <= 10">
-            <v-row class="my-3" justify="center">
-              <div :key="totalPage" v-for="totalPage in totalPage" @click="currentPage = totalPage - 1, page()">
-                <router-link :to="{ path: $route.path, query: { ...$route.query, page: totalPage } }"
-                  style="text-decoration: none;">
-                  <div v-if="currentPage === totalPage - 1">
-                    <v-btn variant="text" size="x-small" class="font-weight-bold"
-                      style="font-size: 16px; color:#5E913B;">{{ totalPage }}</v-btn>
+            <v-row
+              class="my-3"
+              justify="center"
+            >
+              <div
+                v-for="curPage in totalPage"
+                :key="curPage"
+                @click="currentPage = page - 1, page()"
+              >
+                <router-link
+                  :to="{ path: $route.path, query: { ...$route.query, page: curPage } }"
+                  style="text-decoration: none;"
+                >
+                  <div v-if="currentPage === curPage - 1">
+                    <v-btn
+                      variant="text"
+                      size="x-small"
+                      class="font-weight-bold"
+                      style="font-size: 16px; color:#5E913B;"
+                    >
+                      {{ curPage }}
+                    </v-btn>
                   </div>
                   <div v-else>
-                    <v-btn variant="text" size="x-small" style="font-size: 14px; color:#A9A9A9">{{ totalPage
-                    }}</v-btn>
+                    <v-btn
+                      variant="text"
+                      size="x-small"
+                      style="font-size: 14px; color:#A9A9A9"
+                    >
+                      {{ curPage
+                      }}
+                    </v-btn>
                   </div>
                 </router-link>
               </div>
@@ -334,52 +705,118 @@
           </div>
           <div v-else>
             <v-row class="my-3">
-              <router-link :to="{ path: $route.path, query: { ...$route.query, page: totalPage } }" @click="page()"
-                style="text-decoration: none;">
-                <v-btn @click="currentPage = 0" :disabled="currentPage < 1" variant="text" size="x-small"
-                  :style="{ color: currentPage <= 1 ? '#5E913B' : '' }">
-                  <div style="color:#A9A9A9; font-size:16px">&lt;&lt;</div>
+              <router-link
+                :to="{ path: $route.path, query: { ...$route.query, page: totalPage } }"
+                style="text-decoration: none;"
+                @click="page()"
+              >
+                <v-btn
+                  :disabled="currentPage < 1"
+                  variant="text"
+                  size="x-small"
+                  :style="{ color: currentPage <= 1 ? '#5E913B' : '' }"
+                  @click="currentPage = 0"
+                >
+                  <div style="color:#A9A9A9; font-size:16px">
+                    &lt;&lt;
+                  </div>
                 </v-btn>
               </router-link>
-              <router-link :to="{ path: $route.path, query: { ...$route.query, page: totalPage } }" @click="page()"
-                style="text-decoration: none;">
-                <v-btn @click="currentPage = Math.max(currentPage - 10, 0)" :disabled="currentPage < 1" variant="text"
-                  size="x-small" :style="{ color: currentPage <= 1 ? '#5E913B' : '' }">
-                  <div style="color:#A9A9A9; font-size:16px">&lt;</div>
+              <router-link
+                :to="{ path: $route.path, query: { ...$route.query, page: totalPage } }"
+                style="text-decoration: none;"
+                @click="page()"
+              >
+                <v-btn
+                  :disabled="currentPage < 1"
+                  variant="text"
+                  size="x-small"
+                  :style="{ color: currentPage <= 1 ? '#5E913B' : '' }"
+                  @click="currentPage = Math.max(currentPage - 10, 0)"
+                >
+                  <div style="color:#A9A9A9; font-size:16px">
+                    &lt;
+                  </div>
                 </v-btn>
               </router-link>
-              <div v-for="pageNumber in displayPageNumbers" :key="pageNumber"
+              <div
+                v-for="pageNumber in displayPageNumbers"
+                :key="pageNumber"
                 :class="{ active: pageNumber === currentPage, 'last-page': pageNumber === displayPageNumbers[displayPageNumbers.length - 1] }"
-                @click="currentPage = pageNumber - 1, page()">
-                <router-link :to="{ path: $route.path, query: { ...$route.query, page: totalPage } }"
-                  style="text-decoration: none;">
+                @click="currentPage = pageNumber - 1, page()"
+              >
+                <router-link
+                  :to="{ path: $route.path, query: { ...$route.query, page: totalPage } }"
+                  style="text-decoration: none;"
+                >
                   <div v-if="currentPage === pageNumber - 1">
-                    <v-btn @click="currentPage = pageNumber" variant="text" size="x-small" class="font-weight-bold"
-                      style="font-size: 16px; color:#5E913B">{{ pageNumber }}</v-btn>
+                    <v-btn
+                      variant="text"
+                      size="x-small"
+                      class="font-weight-bold"
+                      style="font-size: 16px; color:#5E913B"
+                      @click="currentPage = pageNumber"
+                    >
+                      {{ pageNumber }}
+                    </v-btn>
                   </div>
                   <div v-else-if="currentPage >= totalPage">
-                    <v-btn @click="currentPage = pageNumber" variant="text" size="x-small"
-                      :style="{ fontSize: pageNumber === displayPageNumbers[displayPageNumbers.length - 1] ? '16px' : '14px', fontWeight: pageNumber === displayPageNumbers[displayPageNumbers.length - 1] && 'bold', color: pageNumber === displayPageNumbers[displayPageNumbers.length - 1] ? '#5E913B' : '#A9A9A9' }">{{
-                        pageNumber }}</v-btn>
+                    <v-btn
+                      variant="text"
+                      size="x-small"
+                      :style="{ fontSize: pageNumber === displayPageNumbers[displayPageNumbers.length - 1] ? '16px' : '14px', fontWeight: pageNumber === displayPageNumbers[displayPageNumbers.length - 1] && 'bold', color: pageNumber === displayPageNumbers[displayPageNumbers.length - 1] ? '#5E913B' : '#A9A9A9' }"
+                      @click="currentPage = pageNumber"
+                    >
+                      {{
+                        pageNumber }}
+                    </v-btn>
                   </div>
                   <div v-else>
-                    <v-btn @click="currentPage = pageNumber" variant="text" size="x-small"
-                      style="font-size: 14px; color:#A9A9A9">{{ pageNumber }}</v-btn>
+                    <v-btn
+                      variant="text"
+                      size="x-small"
+                      style="font-size: 14px; color:#A9A9A9"
+                      @click="currentPage = pageNumber"
+                    >
+                      {{ pageNumber }}
+                    </v-btn>
                   </div>
                 </router-link>
               </div>
-              <router-link :to="{ path: $route.path, query: { ...$route.query, page: totalPage } }" @click="page()"
-                style="text-decoration: none;" :style="{ color: currentPage >= totalPage ? '#5E913B' : '' }">
-                <v-btn @click="currentPage = Math.min(currentPage + 10, totalPage)"
-                  :disabled="currentPage >= totalPage - 1" variant="text" size="x-small" style="font-size: 14px;">
-                  <div style="color:#A9A9A9; font-size:16px">&gt;</div>
+              <router-link
+                :to="{ path: $route.path, query: { ...$route.query, page: totalPage } }"
+                style="text-decoration: none;"
+                :style="{ color: currentPage >= totalPage ? '#5E913B' : '' }"
+                @click="page()"
+              >
+                <v-btn
+                  :disabled="currentPage >= totalPage - 1"
+                  variant="text"
+                  size="x-small"
+                  style="font-size: 14px;"
+                  @click="currentPage = Math.min(currentPage + 10, totalPage)"
+                >
+                  <div style="color:#A9A9A9; font-size:16px">
+                    &gt;
+                  </div>
                 </v-btn>
               </router-link>
-              <router-link :to="{ path: $route.path, query: { ...$route.query, page: totalPage } }" @click="page()"
-                style="text-decoration: none;" :style="{ color: currentPage >= totalPage ? '#5E913B' : '' }">
-                <v-btn @click="currentPage = totalPage" :disabled="currentPage >= totalPage - 1" variant="text"
-                  size="x-small" style="font-size: 14px;">
-                  <div style="color:#A9A9A9; font-size:16px">&gt;&gt;</div>
+              <router-link
+                :to="{ path: $route.path, query: { ...$route.query, page: totalPage } }"
+                style="text-decoration: none;"
+                :style="{ color: currentPage >= totalPage ? '#5E913B' : '' }"
+                @click="page()"
+              >
+                <v-btn
+                  :disabled="currentPage >= totalPage - 1"
+                  variant="text"
+                  size="x-small"
+                  style="font-size: 14px;"
+                  @click="currentPage = totalPage"
+                >
+                  <div style="color:#A9A9A9; font-size:16px">
+                    &gt;&gt;
+                  </div>
                 </v-btn>
               </router-link>
             </v-row>
@@ -390,13 +827,23 @@
   </v-app>
 
   <!--푸터-->
-  <v-footer border class="mt-10">
+  <v-footer
+    border
+    class="mt-10"
+  >
     <v-container>
       <v-row>
-        <v-col cols="3"></v-col>
+        <v-col cols="3" />
         <v-col cols="6">
-          <v-sheet height="80" width="650" align="center">
-            <v-row justify="center" class="text-grey-lighten-1">
+          <v-sheet
+            height="80"
+            width="650"
+            align="center"
+          >
+            <v-row
+              justify="center"
+              class="text-grey-lighten-1"
+            >
               <v-col cols="auto">
                 <p>서비스 소개</p>
               </v-col>
@@ -407,7 +854,11 @@
                 <p>이용약관</p>
               </v-col>
             </v-row>
-            <v-row class="text-grey-lighten-2" style="font-size:12px" justify="center">
+            <v-row
+              class="text-grey-lighten-2"
+              style="font-size:12px"
+              justify="center"
+            >
               <v-col cols="auto">
                 <p>[팀] 인디펜더</p>
               </v-col>
@@ -420,7 +871,7 @@
             </v-row>
           </v-sheet>
         </v-col>
-        <v-col cols="3"> </v-col>
+        <v-col cols="3" />
       </v-row>
     </v-container>
   </v-footer>
@@ -449,6 +900,49 @@ export default {
 
       error: false, // 로딩 상태를 나타내는 데이터 속성
     }
+  },
+  computed: {
+    displayPageNumbers() {
+      const currentPage = this.currentPage;
+      const totalPage = this.totalPage;
+      const pageNumbers = [];
+      let startPage = 1;
+      let endPage = 10;
+      let diff = totalPage - currentPage;
+
+      if (totalPage <= 10) {
+        for (let i = 1; i <= totalPage; i++) {
+          pageNumbers.push(i);
+        }
+      } else if (diff < 5) {
+        startPage = totalPage - 9;
+        endPage = totalPage;
+      } else if (currentPage > 5) {
+        startPage = currentPage - 4;
+        endPage = currentPage + 5;
+      }
+      for (let i = startPage; i <= endPage; i++) {
+        pageNumbers.push(i);
+      }
+      return pageNumbers;
+    },
+    ...mapGetters(['getToken'])
+  },
+  mounted() {
+    const urlParams = new URLSearchParams(window.location.search);
+    this.searchText = urlParams.get('searchText');
+
+    this.Board()
+
+    if (this.$store.state.locationAuthentication === true) {
+      this.getAddr();
+      this.boolAuthentication = true      
+    }
+    else
+      this.boolAuthentication = false
+
+    if (this.getToken)
+      this.loginToken()
   },
   methods: {
     Board() {
@@ -510,10 +1004,10 @@ export default {
       if (this.$store.state.locationAuthentication === true)
 
         this.$axios.post("/api/members/region", { region: this.$store.state.currentLocation }, {
-        headers: {
-          Authorization: this.$store.state.token, // 헤더에 토큰 추가
-        },
-      });
+          headers: {
+            Authorization: this.$store.state.token, // 헤더에 토큰 추가
+          },
+        });
     },
     totalSearch() {
       if (this.searchText !== '') {
@@ -563,49 +1057,6 @@ export default {
       const claims = JSON.parse(decodedPayload);
       this.userNickName = claims.nickname;
     }
-  },
-  mounted() {
-    const urlParams = new URLSearchParams(window.location.search);
-    this.searchText = urlParams.get('searchText');
-
-    this.Board()
-
-    if (this.$store.state.locationAuthentication === true) {
-      this.getAddr();
-      this.boolAuthentication = true      
-    }
-    else
-      this.boolAuthentication = false
-
-    if (this.getToken)
-      this.loginToken()
-  },
-  computed: {
-    displayPageNumbers() {
-      const currentPage = this.currentPage;
-      const totalPage = this.totalPage;
-      const pageNumbers = [];
-      let startPage = 1;
-      let endPage = 10;
-      let diff = totalPage - currentPage;
-
-      if (totalPage <= 10) {
-        for (let i = 1; i <= totalPage; i++) {
-          pageNumbers.push(i);
-        }
-      } else if (diff < 5) {
-        startPage = totalPage - 9;
-        endPage = totalPage;
-      } else if (currentPage > 5) {
-        startPage = currentPage - 4;
-        endPage = currentPage + 5;
-      }
-      for (let i = startPage; i <= endPage; i++) {
-        pageNumbers.push(i);
-      }
-      return pageNumbers;
-    },
-    ...mapGetters(['getToken'])
-  },
+  }
 }
 </script>
