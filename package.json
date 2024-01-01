@@ -10,6 +10,7 @@
   "dependencies": {
     "@mdi/font": "5.9.55",
     "core-js": "^3.8.3",
+    "dayjs": "^1.11.10",
     "roboto-fontface": "*",
     "sockjs-client": "^1.6.1",
     "vue": "^3.2.13",
@@ -50,9 +51,15 @@
       "parser": "@babel/eslint-parser"
     },
     "rules": {
-      "curly": ["error"],
-      "vue/script-indent": ["error"],
-      "brace-style": ["error"]
+      "curly": [
+        "error"
+      ],
+      "vue/script-indent": [
+        "error"
+      ],
+      "brace-style": [
+        "error"
+      ]
     }
   },
   "browserslist": [
