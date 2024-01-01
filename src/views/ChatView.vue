@@ -533,7 +533,7 @@
           this.stompClient.subscribe(destination, (message) => {
             const receivedMessage = JSON.parse(message.body);
             this.messages.push(receivedMessage);
-            console.log("receive : " + receivedMessage)
+            console.log("receive : " + JSON.stringify(receivedMessage))
           });
         },
         sendMessage() {
@@ -553,8 +553,6 @@
           this.stompClient.send(destination, JSON.stringify(message), header);
           // 전송 후 초기화
           this.newMessage = '';
-    
-    
         },
         toggleLocationAuthentication() {
         this.$store.commit('toggleLocationAuthentication');
