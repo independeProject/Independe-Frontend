@@ -588,7 +588,6 @@ export default {
     return {
       active_tab: 0,
       link: ['메인', '게시판', '자취생활'],
-  
       members: [],
       memberId: null,
       selectedMember: null,
@@ -598,13 +597,11 @@ export default {
       chatRoomId: null,
       chatHistory: [],
       chatRooms: [],
-          
       showLocationAuthentication: false,
       userNickName: '',
       boolAuthentication: false,
       searchCondition: 0,
       searchKeyword: '',
-  
       searchText: '', // 검색어를 저장하는 데이터 속성
       error: false, // 로딩 상태를 나타내는 데이터 속성
       domain: 'http://3.34.134.198:8080',
@@ -738,12 +735,8 @@ export default {
         isReadData: false
       };
       const destination = '/pub/private-message';
-      const header = {
-        Authorization: this.getToken
-      };
-    
           
-      this.stompClient.send(destination, JSON.stringify(message), header);
+      this.stompClient.send(destination, JSON.stringify(message));
       // 전송 후 초기화
       this.newMessage = '';
     },
