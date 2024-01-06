@@ -807,7 +807,7 @@ export default {
   .chat {
     display: flex;
     flex-direction: row;
-    height: 100%;
+    height: calc(100vh - 80px);
   }
   
   .container-1 {
@@ -820,6 +820,7 @@ export default {
   .container-2 {
     flex: 4; /* 남은 공간을 모두 차지하도록 설정 */
     height: 100%;
+    overflow: auto;
   }
 
   .chat-input-container  {
