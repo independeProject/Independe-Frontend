@@ -490,7 +490,13 @@
                     v-else
                     class="msg-my"
                   >
-                    <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(chat.createdDate) }}</span>
+                    <div class="msg-info">
+                      <span
+                        v-show="!chat.isRead"
+                        class="message-is-read"
+                      >1</span>
+                      <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(chat.createdDate) }}</span>
+                    </div>
                     <span class="msg2">{{ chat.message }}</span>
                   </div>
                 </div>
@@ -526,7 +532,13 @@
                     v-else
                     class="msg-my"
                   >
-                    <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(message.createdDate) }}</span>
+                    <div>
+                      <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(message.createdDate) }}</span>
+                      <span
+                        v-show="!message.isRead"
+                        class="message-is-read"
+                      >1</span>
+                    </div>
                     <span class="msg">{{ message.message }}</span>
                   </div>
                 </div>
@@ -710,8 +722,7 @@ export default {
         message: this.newMessage,
         receiverId: this.memberId,
         chatRoomId: this.chatRoomId,
-        senderNickname: null,
-        isReadData: false
+        senderNickname: null
       };
       const destination = '/pub/private-message';
           
@@ -871,6 +882,15 @@ export default {
   }
   .msg-my{
     text-align: right;
+
+    display: flex;
+    justify-content: flex-end;
+  }
+  .msg-my > .msg-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 10px;
   }
   .msg-your {
     text-align: left;
@@ -897,12 +917,13 @@ export default {
     color: gray;
   }
 
-  .msg-your .message-createdDate {
-    padding-left: 10px;
+  .message-is-read {
+    font-size: 0.8rem;
+    color: yellowgreen;
   }
 
-  .msg-my .message-createdDate {
-    padding-right: 10px;
+  .msg-your .message-createdDate {
+    padding-left: 10px;
   }
   
   .input-container {
