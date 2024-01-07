@@ -590,7 +590,6 @@ export default {
       link: ['메인', '게시판', '자취생활'],
       members: [],
       memberId: null,
-      selectedMember: null,
       messages: [],
       newMessage: '',
       stompClient: null,
@@ -605,6 +604,7 @@ export default {
       searchText: '', // 검색어를 저장하는 데이터 속성
       error: false, // 로딩 상태를 나타내는 데이터 속성
       domain: 'http://3.34.134.198:8080',
+      subscribeIds: {}
     };
   },
   computed: {
@@ -626,7 +626,9 @@ export default {
       const headers = {
         Authorization: this.getToken
       };
-      this.stompClient.unsubscribe(headers);
+
+      const destination = `/user/${this.chatRoomId}/private`;
+      this.stompClient.unsubscribe(this.subscribeIds[destination], headers);
       this.stompClient.disconnect();
     }
   },
@@ -634,9 +636,10 @@ export default {
     init () {
       this.memberId = this.$route.params.memberId;
       this.findChatRoomId();
-      this.selectMember();
+      // STOMP 클라이언트 초기화 및 연결
+      this.initStompClient();
       this.fetchChatRooms();
-  
+
       if (this.$store.state.locationAuthentication === true) {
         this.getAddr();
         this.boolAuthentication = true      
@@ -697,12 +700,6 @@ export default {
           console.error(error);
         })
     },
-    selectMember(member) {
-      this.selectedMember = member;
-    
-      // STOMP 클라이언트 초기화 및 연결
-      this.initStompClient();
-    },
     initStompClient() {
       const socket = new SockJS(`${this.domain}/ws`)
   
@@ -720,11 +717,15 @@ export default {
     subscribeToPrivateMessages() {
       const destination = `/user/${this.chatRoomId}/private`;
     
-      this.stompClient.subscribe(destination, (message) => {
+      const subscribeInfo = this.stompClient.subscribe(destination, (message) => {
         const receivedMessage = JSON.parse(message.body);
         this.messages.push(receivedMessage);
         console.log("receive : " + JSON.stringify(receivedMessage))
       });
+
+      this.subscribeIds = {
+        [destination]: subscribeInfo.id
+      }
     },
     sendMessage() {
       const message = {
