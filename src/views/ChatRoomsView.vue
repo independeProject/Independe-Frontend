@@ -22,7 +22,7 @@
               to="/"
               style="text-decoration: none; color:black;"
             >
-              <v-tab @click="$store.state.myGlobalVariable = 0">
+              <v-tab>
                 <p class="font-weight-bold text-h6 mx-4">
                   {{ link[0] }}
                 </p>
@@ -31,7 +31,6 @@
             <router-link
               to="/board/ALL/FREE"
               style="text-decoration: none; color:black;"
-              @click="$store.state.boardCheck = 0"
             >
               <v-menu open-on-hover>
                 <template #activator="{ props }">
@@ -46,11 +45,9 @@
                     <router-link
                       to="/board/ALL/FREE"
                       style="text-decoration: none; color:black;"
-                      @click="region_all"
                     >
                       <v-list-item-title
                         class="my-2"
-                        @click="$store.state.boardCheck = 0"
                       >
                         자유
                       </v-list-item-title>
@@ -62,11 +59,9 @@
                     <router-link
                       to="/board/SEOUL/TALK"
                       style="text-decoration: none; color:black;"
-                      @click="region_seoul"
                     >
                       <v-list-item-title
                         class="my-2"
-                        @click="$store.state.boardCheck = 1"
                       >
                         서울
                       </v-list-item-title>
@@ -78,11 +73,9 @@
                     <router-link
                       to="/board/PUSAN/TALK"
                       style="text-decoration: none; color:black;"
-                      @click="region_busan"
                     >
                       <v-list-item-title
                         class="my-2"
-                        @click="$store.state.boardCheck = 2"
                       >
                         부산
                       </v-list-item-title>
@@ -94,11 +87,9 @@
                     <router-link
                       to="/board/ULSAN/TALK"
                       style="text-decoration: none; color:black;"
-                      @click="region_ulsan"
                     >
                       <v-list-item-title
                         class="my-2"
-                        @click="$store.state.boardCheck = 3"
                       >
                         울산
                       </v-list-item-title>
@@ -110,11 +101,9 @@
                     <router-link
                       to="/board/KEYNONGNAM/TALK"
                       style="text-decoration: none; color:black;"
-                      @click="region_kyeongnam"
                     >
                       <v-list-item-title
                         class="my-2"
-                        @click="$store.state.boardCheck = 4"
                       >
                         경남
                       </v-list-item-title>
@@ -126,7 +115,6 @@
             <router-link
               to="/independent/CLEAN"
               style="text-decoration: none; color:black;"
-              @click="$store.state.independentCheck = 0"
             >
               <v-menu open-on-hover>
                 <template #activator="{ props }">
@@ -141,11 +129,9 @@
                     <router-link
                       to="/independent/CLEAN"
                       style="text-decoration: none; color:black;"
-                      @click="independent_clean"
                     >
                       <v-list-item-title
                         class="my-2"
-                        @click="$store.state.independentCheck = 0"
                       >
                         청소
                       </v-list-item-title>
@@ -157,11 +143,9 @@
                     <router-link
                       to="/independent/WASH"
                       style="text-decoration: none; color:black;"
-                      @click="independent_wash"
                     >
                       <v-list-item-title
                         class="my-2"
-                        @click="$store.state.independentCheck = 1"
                       >
                         세탁
                       </v-list-item-title>
@@ -173,11 +157,9 @@
                     <router-link
                       to="/independent/COOK"
                       style="text-decoration: none; color:black;"
-                      @click="independent_cook"
                     >
                       <v-list-item-title
                         class="my-2"
-                        @click="$store.state.independentCheck = 2"
                       >
                         요리
                       </v-list-item-title>
@@ -189,11 +171,9 @@
                     <router-link
                       to="/independent/HEALTH"
                       style="text-decoration: none; color:black;"
-                      @click="independent_health"
                     >
                       <v-list-item-title
                         class="my-2"
-                        @click="$store.state.independentCheck = 3"
                       >
                         건강
                       </v-list-item-title>
@@ -205,11 +185,9 @@
                     <router-link
                       to="/independent/ETC"
                       style="text-decoration: none; color:black;"
-                      @click="independent_etc"
                     >
                       <v-list-item-title
                         class="my-2"
-                        @click="$store.state.independentCheck = 4"
                       >
                         기타
                       </v-list-item-title>
