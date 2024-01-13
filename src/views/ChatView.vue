@@ -889,7 +889,7 @@ export default {
   .msg-my > .msg-info {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     padding-right: 10px;
   }
   .msg-your {

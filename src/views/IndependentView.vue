@@ -95,7 +95,6 @@
                     <router-link
                       to="/board/ULSAN/TALK"
                       style="text-decoration: none; color:black;"
-                      @click="region_ulsan"
                     >
                       <v-list-item-title
                         class="my-2"
@@ -111,7 +110,6 @@
                     <router-link
                       to="/board/KEYNONGNAM/TALK"
                       style="text-decoration: none; color:black;"
-                      @click="region_kyeongnam"
                     >
                       <v-list-item-title
                         class="my-2"
