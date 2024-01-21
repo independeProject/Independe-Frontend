@@ -451,6 +451,7 @@
             class="chat-link"
           >
             <span>{{ room.receiverNickname }} </span>
+            <span v-show="room.isReadCount > 0">{{ room.isReadCount }}</span>
           </router-link>
         </li>
       </ul>
@@ -588,6 +589,7 @@ export default {
       chatRooms: [],
       showLocationAuthentication: false,
       userNickName: '',
+      username: '',
       boolAuthentication: false,
       searchCondition: 0,
       searchKeyword: '',
@@ -698,7 +700,7 @@ export default {
       });
     },
     subscribeToChatRooms() {
-      const destination = `/user/${this.userNickName}/room`;
+      const destination = `/user/${this.username}/room`;
     
       const subscribeInfo = this.stompClient.subscribe(destination, (message) => {
         console.log("receive : " + message)
@@ -788,6 +790,7 @@ export default {
       }).join(''));
       const claims = JSON.parse(decodedPayload);
       this.userNickName = claims.nickname;
+      this.username = claims.username;
     },
     destory () {
       // 컴포넌트 해제 시 STOMP 클라이언트 연결 해제
@@ -843,13 +846,16 @@ export default {
   }
 
   .chat-link {
-    display: inline-block;
+    /* display: inline-block; */
     color: #4A8522;
     font-weight: bold;
     text-decoration: none;
     font-size: 24px;
     line-height: 20px;
     padding: 10px;
+
+    display: flex;
+    justify-content: space-between;
   }
   .chat-link:hover {
     width: 100%;

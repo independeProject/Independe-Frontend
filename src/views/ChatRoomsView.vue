@@ -450,7 +450,8 @@
             :to="'/chat/' + room.receiverId"
             class="chat-link"
           >
-            {{ room.receiverNickname }}
+            <span>{{ room.receiverNickname }}</span>
+            <span v-show="room.isReadCount > 0">{{ room.isReadCount }}</span>
           </router-link>
           <!-- <br/><span class="temp-lastmessage"> {{room.lastMessage}} </span> -->
         </li>
@@ -601,13 +602,16 @@ export default {
     }
 
     .chat-link {
-      display: inline-block;
+      /* display: inline-block; */
       color: #4A8522;
       font-weight: bold;
       text-decoration: none;
       font-size: 24px;
       line-height: 20px;
       padding: 10px;
+
+      display: flex;
+      justify-content: space-between;
     }
     .chat-link:hover {
       width: 100%;
