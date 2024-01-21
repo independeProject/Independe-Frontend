@@ -533,7 +533,7 @@
                     v-else
                     class="msg-my"
                   >
-                    <div>
+                    <div class="msg-info">
                       <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(message.createdDate) }}</span>
                       <span
                         v-show="!message.isRead"
