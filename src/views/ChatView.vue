@@ -534,11 +534,11 @@
                     class="msg-my"
                   >
                     <div class="msg-info">
-                      <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(message.createdDate) }}</span>
                       <span
                         v-show="!message.isRead"
                         class="message-is-read"
                       >1</span>
+                      <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(message.createdDate) }}</span>
                     </div>
                     <span class="msg">{{ message.message }}</span>
                   </div>
