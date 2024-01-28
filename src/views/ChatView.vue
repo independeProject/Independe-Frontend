@@ -469,23 +469,19 @@
             >
               <div class="my-wrapper">
                 <div :class="{'my-message': chat.senderNickname === userNickName, 'your-message': chat.senderNickname !== userNickName}">
-                  <ul v-if="chat.senderNickname !== userNickName">
-                    <li
-                      v-for="room in chatRooms"
-                      :key="room.chatRoomId"
-                    >
-                      <span
-                        v-if="room.opponentId === opponentId"
-                        class="opponent-nickname"
-                      >{{ room.opponentNickname }}</span>
-                    </li>
-                  </ul>
                   <div
                     v-if="chat.senderNickname !== userNickName"
                     class="msg-your"
                   >
+                    <span class="opponent-nickname">{{ chat.receiverNickname }}</span>
                     <span class="msg2">{{ chat.message }}</span>
-                    <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(chat.createdDate) }}</span>
+                    <div class="msg-info">
+                      <span
+                        v-show="!chat.isRead"
+                        class="message-is-read"
+                      >1</span>
+                      <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(chat.createdDate) }}</span>
+                    </div>
                   </div>
                   <div
                     v-else
@@ -511,23 +507,19 @@
             >
               <div class="my-wrapper">
                 <div :class="{'my-message': message.senderNickname === userNickName, 'your-message': message.senderNickname !== userNickName}">
-                  <ul v-if="message.senderNickname !== userNickName">
-                    <li
-                      v-for="room in chatRooms"
-                      :key="room.chatRoomId"
-                    >
-                      <span
-                        v-if="room.opponentId === opponentId"
-                        class="opponent-nickname"
-                      >{{ room.opponentNickname }}</span>
-                    </li>
-                  </ul>
                   <div
                     v-if="message.senderNickname !== userNickName"
                     class="msg-your"
                   >
+                    <span class="opponent-nickname">{{ message.receiverNickname }}</span>
                     <span class="msg">{{ message.message }}</span>
-                    <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(message.createdDate) }}</span>
+                    <div class="msg-info">
+                      <span
+                        v-show="!message.isRead"
+                        class="message-is-read"
+                      >1</span>
+                      <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(message.createdDate) }}</span>
+                    </div>
                   </div>
                   <div
                     v-else
@@ -890,17 +882,21 @@ export default {
     display: flex;
     justify-content: flex-end;
   }
-  .msg-my > .msg-info {
+  .msg-info {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+  }
+  .msg-my .msg-info {
     padding-right: 10px;
   }
-  .msg-your {
-    text-align: left;
-    margin-bottom: 5px;
+  .msg-your .msg-info {
+    padding-left: 10px;
   }
-   .msg-my > .msg2{
+  .msg-your {
+    display:flex;
+  }
+  .msg-my > .msg2{
     background-color: #4A8522;
       color: #fff;
   }
@@ -924,10 +920,6 @@ export default {
   .message-is-read {
     font-size: 0.8rem;
     color: yellowgreen;
-  }
-
-  .msg-your .message-createdDate {
-    padding-left: 10px;
   }
   
   .input-container {
