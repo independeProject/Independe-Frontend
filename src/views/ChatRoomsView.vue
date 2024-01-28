@@ -451,7 +451,7 @@
             class="chat-link"
           >
             <span>{{ room.receiverNickname }}</span>
-            <span v-show="room.isReadCount > 0">{{ room.isReadCount }}</span>
+            <span v-show="room.unReadCount > 0">{{ room.unReadCount }}</span>
           </router-link>
           <!-- <br/><span class="temp-lastmessage"> {{room.lastMessage}} </span> -->
         </li>
