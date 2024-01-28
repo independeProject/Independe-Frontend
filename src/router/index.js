@@ -58,7 +58,7 @@ const routes = [
     component: RedriectView
   },
   {
-    path: '/chat/:memberId',
+    path: '/chat/:opponentId',
     name: 'ChatView',
     component: ChatView
 },

@@ -447,10 +447,10 @@
           :key="room.chatRoomId"
         >
           <router-link
-            :to="'/chat/' + room.receiverId"
+            :to="'/chat/' + room.opponentId"
             class="chat-link"
           >
-            <span>{{ room.receiverNickname }} </span>
+            <span>{{ room.opponentNickname }} </span>
             <span v-show="room.unReadCount > 0">{{ room.unReadCount }}</span>
           </router-link>
         </li>
@@ -458,7 +458,7 @@
     </div>
     <div class="container-2">
       <div
-        v-if="memberId"
+        v-if="opponentId"
         class="chat-input-container"
       >
         <div>
@@ -475,9 +475,9 @@
                       :key="room.chatRoomId"
                     >
                       <span
-                        v-if="room.receiverId === memberId"
-                        class="receiver-nickname"
-                      >{{ room.receiverNickname }}</span>
+                        v-if="room.opponentId === opponentId"
+                        class="opponent-nickname"
+                      >{{ room.opponentNickname }}</span>
                     </li>
                   </ul>
                   <div
@@ -517,9 +517,9 @@
                       :key="room.chatRoomId"
                     >
                       <span
-                        v-if="room.receiverId == memberId"
-                        class="receiver-nickname"
-                      >{{ room.receiverNickname }}</span>
+                        v-if="room.opponentId === opponentId"
+                        class="opponent-nickname"
+                      >{{ room.opponentNickname }}</span>
                     </li>
                   </ul>
                   <div
@@ -580,7 +580,7 @@ export default {
       active_tab: 0,
       link: ['메인', '게시판', '자취생활'],
       members: [],
-      memberId: null,
+      opponentId: null,
       messages: [],
       newMessage: '',
       stompClient: null,
@@ -604,7 +604,7 @@ export default {
   },
   watch: {
     $route (val) {
-      if (val.params.memberId) {
+      if (val.params.opponentId) {
         this.destory();
         this.init();
       }
@@ -618,7 +618,9 @@ export default {
   },
   methods: {
     init () {
-      this.memberId = this.$route.params.memberId;
+      if (this.$route.params.opponentId) {
+        this.opponentId = this.$route.params.opponentId;
+      }
       this.findChatRoomId();
       // STOMP 클라이언트 초기화 및 연결
       this.initStompClient();
@@ -635,9 +637,6 @@ export default {
         this.loginToken()
       }
     },
-    startChat(receiverId) {
-      this.$router.push('/chat/' + receiverId);        
-    },
     fetchChatRooms() {
       this.$axios.get('/api/chat/rooms', {
         headers: {
@@ -653,7 +652,7 @@ export default {
     },
     findChatRoomId() {
       this.$axios.post('/api/chat/room', {
-        receiverId: this.memberId,
+        opponentId: this.opponentId,
       }, {
         headers: {
           Authorization: this.getToken,
@@ -722,7 +721,7 @@ export default {
     sendMessage() {
       const message = {
         message: this.newMessage,
-        receiverId: this.memberId,
+        opponentId: this.opponentId,
         chatRoomId: this.chatRoomId,
         senderNickname: null
       };
@@ -799,7 +798,6 @@ export default {
           Authorization: this.getToken
         };
 
-        console.log('destory', this.subscribeIds)
         Object.keys(this.subscribeIds).forEach((key) => {
           this.stompClient.unsubscribe(this.subscribeIds[key], headers);
         })

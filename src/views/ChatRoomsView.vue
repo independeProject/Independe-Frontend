@@ -447,10 +447,10 @@
           :key="room.chatRoomId"
         >
           <router-link
-            :to="'/chat/' + room.receiverId"
+            :to="'/chat/' + room.opponentId"
             class="chat-link"
           >
-            <span>{{ room.receiverNickname }}</span>
+            <span>{{ room.opponentNickname }}</span>
             <span v-show="room.unReadCount > 0">{{ room.unReadCount }}</span>
           </router-link>
           <!-- <br/><span class="temp-lastmessage"> {{room.lastMessage}} </span> -->
