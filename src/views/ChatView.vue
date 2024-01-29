@@ -461,7 +461,7 @@
         v-if="opponentId"
         class="chat-input-container"
       >
-        <div>
+        <div class="chat-history">
           <ul>
             <li
               v-for="(chat, index) in chatHistory"
@@ -822,7 +822,6 @@ export default {
     flex: 4; /* 남은 공간을 모두 차지하도록 설정 */
     height: 100%;
     overflow: auto;
-    padding: 15px;
   }
 
   .chat-input-container  {
@@ -830,6 +829,10 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  .chat-history {
+    padding: 15px;
   }
   
   ul, ol {
