@@ -474,13 +474,15 @@
                     class="msg-your"
                   >
                     <span class="opponent-nickname">{{ chat.receiverNickname }}</span>
-                    <span class="msg2">{{ chat.message }}</span>
-                    <div class="msg-info">
-                      <span
-                        v-show="!chat.isRead"
-                        class="message-is-read"
-                      >1</span>
-                      <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(chat.createdDate) }}</span>
+                    <div class="msg-box">
+                      <span class="msg2">{{ chat.message }}</span>
+                      <div class="msg-info">
+                        <span
+                          v-show="!chat.isRead"
+                          class="message-is-read"
+                        >1</span>
+                        <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(chat.createdDate) }}</span>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -512,13 +514,15 @@
                     class="msg-your"
                   >
                     <span class="opponent-nickname">{{ message.receiverNickname }}</span>
-                    <span class="msg">{{ message.message }}</span>
-                    <div class="msg-info">
-                      <span
-                        v-show="!message.isRead"
-                        class="message-is-read"
-                      >1</span>
-                      <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(message.createdDate) }}</span>
+                    <div class="msg-box">
+                      <span class="msg">{{ message.message }}</span>
+                      <div class="msg-info">
+                        <span
+                          v-show="!message.isRead"
+                          class="message-is-read"
+                        >1</span>
+                        <span class="message-createdDate">{{ $filter.formateYYYYMMDDHHmm(message.createdDate) }}</span>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -818,6 +822,7 @@ export default {
     flex: 4; /* 남은 공간을 모두 차지하도록 설정 */
     height: 100%;
     overflow: auto;
+    padding: 15px;
   }
 
   .chat-input-container  {
@@ -856,7 +861,6 @@ export default {
   .my-wrapper {
     height: auto;
     overflow-y: auto;
-    padding: 10px;
   }
   .my-message {
     text-align: right;
@@ -895,12 +899,19 @@ export default {
   }
   .msg-your {
     display:flex;
+    flex-direction: column;
   }
-  .msg-my > .msg2{
+  .opponent-nickname {
+    padding-bottom: 5px;
+  }
+  .msg-box{
+    display: flex;
+  }
+  .msg-my .msg2{
     background-color: #4A8522;
       color: #fff;
   }
-   .msg-your > .msg2{
+   .msg-your .msg2{
     background-color: #f1f0f0;
   }
   
