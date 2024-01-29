@@ -459,7 +459,7 @@
     <div class="container-2">
       <div
         v-if="opponentId"
-        class="chat-input-container"
+        class="chat-container"
       >
         <div class="chat-history">
           <ul>
@@ -824,7 +824,7 @@ export default {
     overflow: auto;
   }
 
-  .chat-input-container  {
+  .chat-container  {
     height: 100%;
     display: flex;
     flex-direction: column;
