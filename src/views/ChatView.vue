@@ -790,11 +790,13 @@ export default {
     destory () {
       // 컴포넌트 해제 시 STOMP 클라이언트 연결 해제
       if (this.stompClient) {
-        const headers = {
-          Authorization: this.getToken
-        };
-
         Object.keys(this.subscribeIds).forEach((key) => {
+          const headers = {
+            Authorization: this.getToken
+          };
+          if (key.endsWith('/private')) {
+            headers['chatRoomId'] = this.chatRoomId
+          }
           this.stompClient.unsubscribe(this.subscribeIds[key], headers);
         })
         this.stompClient.disconnect();
