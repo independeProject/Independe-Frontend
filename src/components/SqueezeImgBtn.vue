@@ -4,7 +4,7 @@
     height="30"
     :style="{ cursor: 'pointer' }"
     :class="{ 'bounce-animation': disabled }"
-    :src="imageUrl"
+    src="../img/post_recommend_default.png"
     @click="() => { startAnimation(); onClickImg(); }"
   />
 </template>
