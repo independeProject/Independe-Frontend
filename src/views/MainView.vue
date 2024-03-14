@@ -953,35 +953,6 @@ export default {
         })
         .catch(err => console.error(err));
     },
-    toggleLocationAuthentication() {
-      this.$store.commit('toggleLocationAuthentication');
-
-      if (this.$store.state.locationAuthentication === true) {
-        this.getAddr();
-        this.$axios.post("/api/members/region", { region: this.$store.state.currentLocation }, {
-          headers: {
-            Authorization: this.$store.state.token, // 헤더에 토큰 추가
-          },
-        });        
-      }
-    },
-    totalSearch() {
-      if (this.searchText !== '') {
-        const query = this.searchText ? `?searchText=${encodeURIComponent(this.searchText)}` : '';
-        window.location.href = '/search' + query;
-      }
-    },
-    handleLogout() {
-      this.$store.dispatch('logout');
-    },
-    addKakaoMapScript() {
-      const script = document.createElement("script");
-      /* global kakao */
-      script.onload = () => kakao.maps.load(this.initMap);
-      script.src =
-        "https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=4e77d9b3460eb3b942634fb28e5e1c40&libraries=services";
-      document.head.appendChild(script);
-    },
     getAddr() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
