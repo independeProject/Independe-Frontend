@@ -660,8 +660,13 @@ export default {
       this.$router.push({ path: '/PostWrite', query: { data: JSON.stringify(this.Board), postId: postId }});
     },
     commentPost() {
-      // first need to check if is in the region
-      
+      if(this.Board.regionType !== "전체" &&
+        this.Board.regionType !== this.$store.state.currentLocation) {
+        alert('해당 지역에서만 댓글을 작성할 수 있습니다.\n' + 
+          `${this.$store.state.locationAuthentication ? this.$store.state.currentLocation + '지역에서 작성해주세요.'
+            : '위치를 우선 인증해주세요.'}`);
+        return;
+      }
 
       const path = this.$route.path;
       const pathSegments = path.split('/');
@@ -713,9 +718,8 @@ export default {
           Authorization: this.$store.state.token, // 헤더에 토큰 추가
         },
       })
-        .then(res => {
-          console.log(res)
-          window.location.reload(); // 요청이 성공하면 새로고침
+        .then(() => {
+          this.read();
         })
         .catch(error => {
           alert('추천에 실패하였습니다.')
@@ -723,6 +727,14 @@ export default {
         });
     },
     recommentPost(comment) {
+      if(this.Board.regionType !== "전체" &&
+        this.Board.regionType !== this.$store.state.currentLocation) {
+        alert('해당 지역에서만 댓글을 작성할 수 있습니다.\n' + 
+          `${this.$store.state.locationAuthentication ? this.$store.state.currentLocation + '지역에서 작성해주세요.'
+            : '위치를 우선 인증해주세요.'}`);
+        return;
+      }
+
       const path = this.$route.path;
       const pathSegments = path.split('/');
       const postId = parseInt(pathSegments[2]);
@@ -736,9 +748,8 @@ export default {
           Authorization: this.$store.state.token, // 헤더에 토큰 추가
         },
       })
-        .then(res => {
-          console.log(res)
-          window.location.reload(); // 요청이 성공하면 새로고침
+        .then(() => {
+          this.read();
         })
         .catch(error => {
           alert('작성에 실패하였습니다.')
@@ -791,13 +802,6 @@ export default {
       } else {
         this.showReply = Object.assign({}, this.showReply, { [commentId]: !this.showReply[commentId] });
       }
-    },
-    addKakaoMapScript() {
-      const script = document.createElement("script");
-      /* global kakao */
-      script.onload = () => kakao.maps.load(this.initMap);
-      script.src = "https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=4e77d9b3460eb3b942634fb28e5e1c40&libraries=services";
-      document.head.appendChild(script);
     },
     getAddr,
     loginToken() {

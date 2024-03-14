@@ -479,7 +479,7 @@ export default {
       error: false, // 로딩 상태를 나타내는 데이터 속성
 
       inputComment: "",
-      recomment: ""
+      recomment: "",
     }
   },
   computed: {
@@ -501,9 +501,8 @@ export default {
   methods: {
     toggleLocationAuthentication() {
       this.$store.commit('toggleLocationAuthentication');
-
       if (this.$store.state.locationAuthentication === true) {
-        this.$axios.post("/api/members/region", { region: 'SEOUL' }, { // region: this.$store.state.currentLocation
+        this.$axios.post("/api/members/region", { region: "서울" }, { // region: this.$store.state.currentLocation 
           headers: {
             Authorization: this.$store.state.token, // 헤더에 토큰 추가
           },

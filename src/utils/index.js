@@ -4,8 +4,6 @@ export function getAddr() {
       const lat = position.coords.latitude;
       const lng = position.coords.longitude;
 
-      console.log('getAddr')
-
       let geocoder = new window.kakao.maps.services.Geocoder();
       let coord = new window.kakao.maps.LatLng(lat, lng);
       let callback = (result, status) => {
