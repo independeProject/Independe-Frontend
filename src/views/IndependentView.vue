@@ -721,6 +721,7 @@
   
 <script>
 import { mapGetters } from 'vuex';
+import { getAddr } from '../utils';
 
 export default {
   name: 'IndependentView',
@@ -1062,55 +1063,7 @@ export default {
 
       this.today = this.month + '-' + this.day
     },
-    toggleLocationAuthentication() {
-      this.$store.commit('toggleLocationAuthentication');
-
-      if (this.$store.state.locationAuthentication === true) {
-        this.$axios.post("/api/members/region", { region: this.$store.state.currentLocation }, {
-
-          headers: {
-            Authorization: this.$store.state.token, // 헤더에 토큰 추가
-          },
-        });
-      }        
-    },
-    totalSearch() {
-      if (this.searchText !== '') {
-        const query = this.searchText ? `?searchText=${encodeURIComponent(this.searchText)}` : '';
-        window.location.href = '/search' + query;
-      }
-    },
-    handleLogout() {
-      this.$store.dispatch('logout');
-    },
-    addKakaoMapScript() {
-      const script = document.createElement("script");
-      /* global kakao */
-      script.onload = () => kakao.maps.load(this.initMap);
-      script.src =
-        "https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=4e77d9b3460eb3b942634fb28e5e1c40&libraries=services";
-      document.head.appendChild(script);
-    },
-    getAddr() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
-
-          let geocoder = new kakao.maps.services.Geocoder();
-          let coord = new kakao.maps.LatLng(lat, lng);
-          let callback = (result, status) => {
-            if (status === kakao.maps.services.Status.OK) {
-              console.log(result[0].road_address.region_1depth_name);
-              this.$store.state.currentLocation = result[0].road_address.region_1depth_name
-            }
-          };
-          geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
-        });
-      } else {
-        console.log("Geolocation is not supported by this browser.");
-      }
-    },
+    getAddr,
     loginToken() {
       const token = this.getToken; // Vuex 스토어에서 토큰 값을 가져옴
 
