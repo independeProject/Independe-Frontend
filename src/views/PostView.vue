@@ -1,3 +1,6 @@
+<script setup>
+import SqueezeImgBtn from '../components/SqueezeImgBtn.vue';
+</script>
 <template>
   <v-app>
     <v-main>
@@ -182,12 +185,9 @@
             class="ml-3"
           >
             <v-row>
-              <v-img
-                src="../img/post_recommend_default.png"
-                width="30"
-                height="30"
-                :style="{ cursor: 'pointer' }"
-                @click="postRecommend"
+              <SqueezeImgBtn 
+                :image-url-default="thumbsUpUrl" 
+                :on-click-img="postRecommend" 
               />
               <div
                 class="ml-2 mt-1"
@@ -550,7 +550,10 @@ export default {
       error: false, // 로딩 상태를 나타내는 데이터 속성
 
       inputComment: "",
-      recomment: ""
+      recomment: "",
+
+      thumbsUpUrl: "../img/post_recommend_default.png",
+      thumbsUpUrlClicked: "../img/post_recommend_select.png",
     }
   },
   computed: {
@@ -570,7 +573,6 @@ export default {
     if (this.getToken) {
       this.loginToken()
     }
-
   },
   methods: {
     files() {
@@ -689,9 +691,10 @@ export default {
           Authorization: this.$store.state.token, // 헤더에 토큰 추가
         },
       })
-        .then(res => {
-          console.log(res)
-          window.location.reload(); // 요청이 성공하면 새로고침
+        .then(() => {
+          this.read();
+          // console.log(res)
+          // window.location.reload(); // 요청이 성공하면 새로고침
         })
         .catch(error => {
           alert('추천에 실패하였습니다.')
@@ -856,4 +859,4 @@ export default {
   display: none;
   resize: none;
 }
-</style>
+</style>../components/SqueezeImgBtn.vue
